@@ -2,19 +2,44 @@ package blok;
 
 public abstract class Blok
 {
+	private int x;
+	private int y;
 	private int sirina;
 	private int visina;
 	private BojaBloka boja;
 	private String pocetnaSlika;
 	private boolean unisten;
 	
-	public Blok(int sirina, int visina, BojaBloka boja, String pocetnaSlika)
+	public Blok(int x, int y, int sirina, int visina, BojaBloka boja, String pocetnaSlika)
 	{
+		this.x = x;
+		this.y = y;
 		this.sirina = sirina;
 		this.visina = visina;
 		this.boja = boja;
 		this.pocetnaSlika = pocetnaSlika;
 		unisten = false;
+	}
+	
+
+	public int getX()
+	{
+		return x;
+	}
+
+	public void setX(int x)
+	{
+		this.x = x;
+	}
+
+	public int getY()
+	{
+		return y;
+	}
+
+	public void setY(int y)
+	{
+		this.y = y;
 	}
 
 	public int getSirina()

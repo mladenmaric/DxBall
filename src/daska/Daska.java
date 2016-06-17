@@ -8,7 +8,7 @@ public class Daska
 	private int y;
 	private int sirina;
 	private int duzina;
-	
+
 	public Daska(int x, int y, int sirina, int duzina)
 	{
 		super();
@@ -17,7 +17,7 @@ public class Daska
 		this.sirina = sirina;
 		this.duzina = duzina;
 	}
-	
+
 	public int getX()
 	{
 		return x;
@@ -60,11 +60,11 @@ public class Daska
 
 	public void pomeriSe()
 	{
-		this.x=MouseInfo.getPointerInfo().getLocation().x;
+		this.x = MouseInfo.getPointerInfo().getLocation().x - sirina / 2;
 	}
-	
+
 	public void produziSe()
 	{
-		this.duzina*=2;
+		this.duzina *= 2;
 	}
 }
