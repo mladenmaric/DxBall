@@ -4,6 +4,8 @@ public abstract class Blok
 {
 	private int sirina;
 	private int visina;
+	private int x;
+	private int y;
 	private BojaBloka boja;
 	private String pocetnaSlika;
 	private boolean unisten;
@@ -15,6 +17,26 @@ public abstract class Blok
 		this.boja = boja;
 		this.pocetnaSlika = pocetnaSlika;
 		unisten = false;
+	}
+	
+	public int getX()
+	{
+		return x;
+	}
+
+	public void setX(int x)
+	{
+		this.x = x;
+	}
+
+	public int getY()
+	{
+		return y;
+	}
+
+	public void setY(int y)
+	{
+		this.y = y;
 	}
 
 	public int getSirina()
