@@ -32,17 +32,6 @@ public class Gui extends JFrame
 		postaviProzor();
 		
 		mouseListener();
-		
-		try
-		{
-			Thread.sleep(2000);
-		}
-		catch (InterruptedException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		dodajTimer();
 		
 	}
@@ -52,7 +41,7 @@ public class Gui extends JFrame
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setExtendedState(MAXIMIZED_BOTH); 
-		//setUndecorated(true);
+		setUndecorated(true);
 		setVisible(true);
 	}
 	
@@ -119,6 +108,8 @@ public class Gui extends JFrame
 				int precnik = engine.getLoptica().getR() * 2;
 				
 				loptica.setBounds(x, y, precnik, precnik);
+				loptica.revalidate();
+				loptica.repaint();
 			}
 		});
 		
