@@ -27,7 +27,7 @@ public class Engine
 		daska = new Daska(100, 650, 100, 20);
 		loptica = new Loptica(510, 510, 10, Math.PI / 3, TipLoptice.NORMALNA);
 		kraj = false;
-		//
+
 		// for (int i = 5; i < 15; i++)
 		// for (int j = 0; j < 20; j++)
 		// blokovi[i][j] = new NormalanBlok(183 + 50 * j, 30 * i, 50, 30,
@@ -43,35 +43,40 @@ public class Engine
 			else
 				loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
 
-		}
-		else if (loptica.getX() + loptica.getR() >= maxSirina)
+		} else if (loptica.getX() + loptica.getR() >= maxSirina)
 		{
 			if (loptica.getUgaoKretanja() >= 0 && loptica.getUgaoKretanja() <= Math.PI / 2)
 				loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
 			else
 				loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
-		}
-		else if (loptica.getY() + loptica.getR() >= maxDuzina)
+		} else if (loptica.getY() + loptica.getR() >= maxDuzina)
 		{
 			kraj = true;
-		}
-		else if (loptica.getY() - loptica.getR() <= minDuzina)
+		} else if (loptica.getY() - loptica.getR() <= minDuzina)
 		{
 			if (loptica.getUgaoKretanja() >= 0 && loptica.getUgaoKretanja() <= Math.PI)
+			{
 				loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
+				// loptica.setY(minDuzina+1);
+			}
 
 		}
 	}
 
 	public void odbijLopticuOdDaske()
 	{
-		if (loptica.getY() + loptica.getR() >= daska.getY())
+		if (loptica.getY() + loptica.getR() >= daska.getY() && loptica.getX() >= daska.getX()
+				&& loptica.getX() <= daska.getX() + daska.getSirina())
 		{
-			if (loptica.getUgaoKretanja() >= (3 / 2) * Math.PI && loptica.getUgaoKretanja() <= 2 * Math.PI)
-				loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
-			else
-				loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
+			if (loptica.getUgaoKretanja() >= Math.PI && loptica.getUgaoKretanja() <= 2 * Math.PI)
+			{
+				double p = loptica.getX() - daska.getX() - daska.getSirina() / 2;
+				System.out.println(p);
+				loptica.setUgaoKretanja(Math.PI / 2 - p / 33);
+			}
 		}
+		// else if(loptica.getY() + loptica.getR() >= daska.getY())
+		// kraj=true;
 	}
 
 	public void odbijLopticuOdBloka()
@@ -81,36 +86,38 @@ public class Engine
 			{
 				if (blokovi[i][j] != null && !blokovi[i][j].isUnisten())
 				{
-					if (loptica.getX() - loptica.getR() == blokovi[i][j].getX() + blokovi[i][j].getSirina())
+					if (loptica.getX() - loptica.getR() == blokovi[i][j].getX() + blokovi[i][j].getSirina() && loptica.getY()>=blokovi[i][j].getY() && loptica.getY()<=blokovi[i][j].getY()+blokovi[i][j].getVisina())
 					{
 						if (loptica.getUgaoKretanja() >= Math.PI / 2 && loptica.getUgaoKretanja() <= Math.PI)
 							loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
 						else
 							loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
-					}
-					else if (loptica.getY() - loptica.getR() == blokovi[i][j].getY() + blokovi[i][j].getVisina())
+						blokovi[i][j].unistiSe();
+					} 
+					else if (loptica.getY() - loptica.getR() == blokovi[i][j].getY() + blokovi[i][j].getVisina() && loptica.getX()>=blokovi[i][j].getX() && loptica.getX()<=blokovi[i][j].getX()+blokovi[i][j].getSirina())
 					{
 						if (loptica.getUgaoKretanja() >= Math.PI / 2 && loptica.getUgaoKretanja() <= Math.PI)
 							loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
 						else
 							loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
-					}
-					else if (loptica.getX() + loptica.getR() == blokovi[i][j].getX())
+						blokovi[i][j].unistiSe();
+					} 
+					else if (loptica.getX() + loptica.getR() == blokovi[i][j].getX() && loptica.getY()>=blokovi[i][j].getY() && loptica.getY()<=blokovi[i][j].getY()+blokovi[i][j].getVisina())
 					{
 						if (loptica.getUgaoKretanja() >= 0 && loptica.getUgaoKretanja() <= Math.PI / 2)
 							loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
 						else
 							loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
-					}
-					else if (loptica.getY() + loptica.getR() == blokovi[i][j].getY())
+						blokovi[i][j].unistiSe();
+					} 
+					else if (loptica.getY() + loptica.getR() == blokovi[i][j].getY() && loptica.getX()>=blokovi[i][j].getX() && loptica.getX()<=blokovi[i][j].getX()+blokovi[i][j].getSirina())
 					{
 						if (loptica.getUgaoKretanja() >= Math.PI && loptica.getUgaoKretanja() <= 3 * Math.PI / 2)
 							loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
 						else
 							loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
+						blokovi[i][j].unistiSe();
 					}
-
-					System.out.println("uslo");
 				}
 			}
 	}
@@ -122,8 +129,6 @@ public class Engine
 
 		loptica.setY(loptica.getY() - y);
 		loptica.setX(loptica.getX() + x);
-		
-		System.out.println(loptica.getY());
 
 		odbijLopticuOdBloka();
 		odbijLopticuOdDaske();
