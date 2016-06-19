@@ -2,8 +2,8 @@ package blok;
 
 public abstract class Blok
 {
-	private int x;
-	private int y;
+	private int x;		// GORE_LEVO (X)
+	private int y;		// GORE_LEVO (Y)
 	private int sirina;
 	private int visina;
 	private BojaBloka boja;
