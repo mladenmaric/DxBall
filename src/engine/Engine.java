@@ -94,29 +94,29 @@ public class Engine
 
 	private void postaviNivo2()
 	{
-//		for(int i=2;i<10;i++)
+//		for(int i=2;i<19;i++)
 //			for(int j=0;j<20;j++)
 //			{
 //				if(i==2 && (j==4 || j==5 || j==14 || j==15)
-//					blokovi[i][j]//razbijajuci
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
 //				else if(i==3 && (j==2 || j==6 || j==13 || j==17)
-//					blokovi[i][j]//razbijajuci
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
 //				else if(i==3 && (j==3 || j==16))
 //					blokovi[i][j]//ljubicasti okovani
 //				else if(i==4 && (j==1 || j==7 || j==12 || j==18))
-//					blokovi[i][j]//razbijajuci
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
 //				else if(i==4 && (j==2 || j==4 || j==5 || j==17 || j==15 || j==14))
 //					blokovi[i][j]//ljubicasti okovani
 //				else if(i==4 && (j==3 || j==16))
 //					blokovi[i][j]//tamnoljubicasti
 //				else if(i==5 && (j==0 || j==19))
-//					blokovi[i][j]//razbijajuci
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
 //				else if(i==5 && (j==6 || j==13))
 //					blokovi[i][j]//ljubicasti okovani
 //				else if(i==5 && j!=7 && j!=12)
 //					blokovi[i][j]//tamnoljubicasti
 //				else if(i==6 && (j==5 || j==14))
-//					blokovi[i][j]//razbijajuci
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
 //				else if(i==6 && (j==6 || j==13))
 //					blokovi[i][j]//tamnoljubicasti
 //				else if(i==6 && (j==7 || j==12))
@@ -126,7 +126,7 @@ public class Engine
 //				else if(i==7 && (j==5 || j==14))
 //					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.PLAVA, "/PLAVA.png");
 //				else if(i==7 && (j==6 || j==13))
-//					blokovi[i][j]//razbijajuci
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
 //				else if(i==7 && (j==7 || j==12))
 //					blokovi[i][j]//tamnoljubicasti
 //				else if(i==7 && (j==8 || j==11))
@@ -136,7 +136,7 @@ public class Engine
 //				else if(i==8 && (j==0 || j==1 || j==18 || j==19))
 //					blokovi[i][j]//zuti neprobojni
 //				else if(i==8 && (j==2 || j==3 || j==7 || j==12 || j==16 || j==17))
-//					blokovi[i][j]//razbijajuci
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
 //				else if(i==8 && (j==4 || j==5 || j==14 || j==15))
 //					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.ZELENA, "/ZELENA.png");
 //				else if(i==8 && (j==6 || j==13))
@@ -146,7 +146,7 @@ public class Engine
 //				else if(i==8 && (j==9 || j==10))
 //					blokovi[i][j]//ljubicasti okovani
 //				else if(i==9 && (j==0 || j==4 || j==8 || j==11 || j==15 || j==19))
-//					blokovi[i][j]//razbijajuci
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
 //				else if(i==9 && (j==1 || j==18))
 //					blokovi[i][j]//narandzasti
 //				else if(i==9 && (j==2 || j==3 || j==16 || j==17))
@@ -157,22 +157,81 @@ public class Engine
 //					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.PLAVA, "/PLAVA.png");
 //				else if(i==9 && (j==9 || j==10))
 //					blokovi[i][j]//tamnoljubicasti
-//			}
-//		
-//		//1.
-//		for(int i=0;i<9;i++)
-//		{
-//			blokovi[]
-//		}
-//		//2.
-//		for(int i=0;i<10;i++)
-//		{
-//			blokovi[10+i][i]//razbijajuci
-//			blokovi[10+i][19-i]//razbijajuci
-//		}
-//		
-//		
-//			
+//				else if(i==10 && (j==0 || j== 19))
+//					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.CRVENA, "/CRVENA.png");
+//				else if(i==10 && (j==1 || j==5 || j==9 || j==10 || j==14 || j==18))
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
+//				else if(i==10 && (j==2 || j==3 || j==16 || j==17))
+//					blokovi[i][j]=new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.NARANDZASTA, "/NARANDZASTA.png");
+//				else if(i==10 && (j==4 || j==15))
+//					blokovi[i][j]=//zuti neprobijijajuci
+//				else if(i==10 && (j==6 || j==7 || j==12 || j==13))
+//					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.ZELENA, "/ZELENA.png");
+//				else if(i==10 && (j==8 || j==11))
+//					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.PLAVA, "/PLAVA.png");
+//				else if(i==11 && (j==1 || j==18))
+//					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.CRVENA, "/CRVENA.png");
+//				else if(i==11 && (j==2 || j==6 || j==13 || j==17))
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
+//				else if(i==11 && (j==3 || j==4 || j==15 || j==16))
+//					blokovi[i][j]=new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.NARANDZASTA, "/NARANDZASTA.png");
+//				else if(i==11 && (j==5 || j==14))
+//					blokovi[i][j]=//zuti neprobijijajuci
+//				else if(i==11 && (j==7 || j==8 || j==11 || j==12))
+//					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.ZELENA, "/ZELENA.png");
+//				else if(i==11 && (j==9 || j==10))
+//					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.PLAVA, "/PLAVA.png");
+//				else if(i==12 && (j==2 || j==17))
+//					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.CRVENA, "/CRVENA.png");
+//				else if(i==12 && (j==3 || j==7 || j==12 || j==16))
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
+//				else if(i==12 && (j==4 || j==5 || j==14 || j==15))
+//					blokovi[i][j]=new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.NARANDZASTA, "/NARANDZASTA.png");
+//				else if(i==12 && (j==6 || j==13))
+//					blokovi[i][j]=//zuti neprobijijajuci
+//				else if(i==12 && (j==8 || j==9 || || j==10 || j==11))
+//					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.ZELENA, "/ZELENA.png");
+//				else if(i==13 && (j==3 || j==16))
+//					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.CRVENA, "/CRVENA.png");
+//				else if(i==13 && (j==4 || j==8 || j== 11 || j==15))
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
+//				else if(i==13 && (j==5 || j==6 || j==13 || j==14))
+//					blokovi[i][j]=new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.NARANDZASTA, "/NARANDZASTA.png");
+//				else if(i==13 && (j==7 || j==12))
+//					blokovi[i][j]=//zuti neprobijijajuci
+//				else if(i==13 && (j==9 || j==10))
+//					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.ZELENA, "/ZELENA.png");
+//				else if(i==14 && (j==4 || j==15))
+//					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.CRVENA, "/CRVENA.png");
+//				else if(i==14 && (j==5 || j==9 || j==10 || j==14))
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
+//				else if(i==14 && (j==6 || j==7 || j==12 || j==13))
+//					blokovi[i][j]=new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.NARANDZASTA, "/NARANDZASTA.png");
+//				else if(i==14 && (j==8 || j==11)
+//					blokovi[i][j]=//zuti neprobijijajuci
+//				else if(i==15 && (j==5 || j==14))	
+//					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.CRVENA, "/CRVENA.png");
+//				else if(i==15 && (j==6 || j==13))
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
+//				else if(i==15 && (j==7 || j==8 || j==11 || j==12))
+//					blokovi[i][j]=new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.NARANDZASTA, "/NARANDZASTA.png");
+//				else if(i==15 && (j==9 || j==10))
+//					blokovi[i][j]=//zuti neprobijijajuci
+//				else if(i==16 && (j==6 || j==13))
+//					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.CRVENA, "/CRVENA.png");
+//				else if(i==16 && (j==7 || j==12))
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
+//				else if(i==16 && (j==8 || j==9 || j==10 || j==11))
+//					blokovi[i][j]=new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.NARANDZASTA, "/NARANDZASTA.png");
+//				else if(i==17 && (j==7 || j==12 || j==9 || j==10))
+//					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.CRVENA, "/CRVENA.png");
+//				else if(i==17 && (j==8 || j==11))
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
+//				else if(i==18 && (j==8 || j==11))
+//					blokovi[i][j]= new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.CRVENA, "/CRVENA.png");
+//				else if(i==18 && (j==9 || j==10))
+//					blokovi[i][j] = new EksplozivanBlok(183 + 50 * i, 30 * j, 50, 30, BojaBloka.ZUTA, "/ZUTA.png");
+//			}			
 	}
 
 	private void postaviNivo3()
@@ -237,7 +296,7 @@ public class Engine
 				double p = loptica.getX() - daska.getX() - daska.getSirina() / 2;
 				loptica.setUgaoKretanja(Math.PI / 2 - p / 37);
 				// loptica.setY(daska.getY());
-				System.out.println(loptica.getUgaoKretanja());
+				//System.out.println(loptica.getUgaoKretanja());
 			}
 		}
 		// else if(loptica.getY() + loptica.getR() >= daska.getY())
@@ -256,8 +315,8 @@ public class Engine
 				{
 					if (loptica.getX() - loptica.getR() <= blokovi[i][j].getX() + blokovi[i][j].getSirina()
 							&& loptica.getX() >= blokovi[i][j].getX() + blokovi[i][j].getSirina()
-							&& loptica.getY() >= blokovi[i][j].getY()
-							&& loptica.getY() <= blokovi[i][j].getY() + blokovi[i][j].getVisina())
+							&& loptica.getY() >= blokovi[i][j].getY()-loptica.getR()
+							&& loptica.getY() <= blokovi[i][j].getY() + blokovi[i][j].getVisina()+loptica.getR())
 					{
 						if (loptica.getUgaoKretanja() >= Math.PI / 2 && loptica.getUgaoKretanja() <= 3 * Math.PI / 2)
 						{
@@ -273,8 +332,8 @@ public class Engine
 						}
 					}
 					else if (loptica.getX() + loptica.getR() >= blokovi[i][j].getX()
-							&& loptica.getX() <= blokovi[i][j].getX() && loptica.getY() >= blokovi[i][j].getY()
-							&& loptica.getY() <= blokovi[i][j].getY() + blokovi[i][j].getVisina())
+							&& loptica.getX() <= blokovi[i][j].getX() && loptica.getY() >= blokovi[i][j].getY()-loptica.getR()
+							&& loptica.getY() <= blokovi[i][j].getY() + blokovi[i][j].getVisina()+loptica.getR())
 					{
 						if ((loptica.getUgaoKretanja() >= Math.PI / 2 && loptica.getUgaoKretanja() <= Math.PI)
 								|| (loptica.getUgaoKretanja() >= 3 * Math.PI / 2
@@ -292,8 +351,8 @@ public class Engine
 						}
 					}
 					else if (loptica.getY() + loptica.getR() >= blokovi[i][j].getY()
-							&& loptica.getY() <= blokovi[i][j].getY() && loptica.getX() >= blokovi[i][j].getX()
-							&& loptica.getX() <= blokovi[i][j].getX() + blokovi[i][j].getSirina())
+							&& loptica.getY() <= blokovi[i][j].getY() && loptica.getX() >= blokovi[i][j].getX()-loptica.getR()
+							&& loptica.getX() <= blokovi[i][j].getX() + blokovi[i][j].getSirina()+loptica.getR())
 					{
 						if (loptica.getUgaoKretanja() >= Math.PI && loptica.getUgaoKretanja() <= 2 * Math.PI)
 						{
@@ -310,8 +369,8 @@ public class Engine
 					}
 					else if (loptica.getY() - loptica.getR() <= blokovi[i][j].getY() + blokovi[i][j].getVisina()
 							&& loptica.getY() >= blokovi[i][j].getY() + blokovi[i][j].getVisina()
-							&& loptica.getX() >= blokovi[i][j].getX()
-							&& loptica.getX() <= blokovi[i][j].getX() + blokovi[i][j].getSirina())
+							&& loptica.getX() >= blokovi[i][j].getX()-loptica.getR()
+							&& loptica.getX() <= blokovi[i][j].getX() + blokovi[i][j].getSirina()+loptica.getR())
 					{
 						if (loptica.getUgaoKretanja() >= 0 && loptica.getUgaoKretanja() <= Math.PI)
 						{
@@ -343,6 +402,18 @@ public class Engine
 		odbijLopticuOdDaske();
 		odbijLopticuOdBloka();
 		odbijLopticuOdZida();
+	}
+	
+	private void proveriDaLiJeKraj()
+	{
+		boolean flag=true;
+		
+		for(int i=0;i<20;i++)
+			for(int j=0;j<20;j++)
+				if(blokovi[i][j]!=null && !blokovi[i][j].isUnisten())
+					flag=false;
+		
+		kraj=flag;
 	}
 
 	public boolean isKraj()
