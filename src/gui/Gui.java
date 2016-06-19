@@ -112,7 +112,7 @@ public class Gui extends JFrame
 
 	private void dodajTimer()
 	{
-		timer = new Timer(35, new ActionListener()
+		timer = new Timer(65, new ActionListener()
 		{
 
 			@Override
