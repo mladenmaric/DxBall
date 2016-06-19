@@ -9,7 +9,7 @@ public abstract class Iznenadjenje
 	private int y;
 	private int sirina;
 	private int visina;
-	
+
 	public Iznenadjenje(Engine engine, int x, int y, int sirina, int visina)
 	{
 		super();
@@ -24,12 +24,12 @@ public abstract class Iznenadjenje
 	{
 		return engine;
 	}
-	
+
 	public abstract void primeniIznenadjenje();
-	
+
 	public void spustiSe()
 	{
-		x-=10;
+		x -= 10;
 	}
 
 	public void setEngine(Engine engine)
@@ -76,6 +76,5 @@ public abstract class Iznenadjenje
 	{
 		this.visina = visina;
 	}
-	
-	
+
 }

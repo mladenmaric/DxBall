@@ -13,6 +13,4 @@ public class NormalanBlok extends Blok
 		blokovi[i][j].setUnisten(true);
 	}
 	
-	
-	
 }
