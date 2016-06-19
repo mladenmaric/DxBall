@@ -7,8 +7,9 @@ public class Loptica
 	private int r;
 	private double ugaoKretanja;
 	private TipLoptice tipLoptice;
+	private int brzinaLoptice;
 	
-	public Loptica(int x, int y,int r,double ugaoKretanja, TipLoptice tipLoptice)
+	public Loptica(int x, int y,int r,double ugaoKretanja, TipLoptice tipLoptice, int brzinaLoptice)
 	{
 		super();
 		this.x = x;
@@ -16,6 +17,7 @@ public class Loptica
 		this.r=r;
 		this.ugaoKretanja=ugaoKretanja;
 		this.tipLoptice = tipLoptice;
+		this.brzinaLoptice=brzinaLoptice;
 	}
 
 	public int getX()
@@ -66,5 +68,25 @@ public class Loptica
 	public void setTipLoptice(TipLoptice tipLoptice)
 	{
 		this.tipLoptice = tipLoptice;
+	}
+
+	public int getBrzinaLoptice()
+	{
+		return brzinaLoptice;
+	}
+
+	public void setBrzinaLoptice(int brzinaLoptice)
+	{
+		this.brzinaLoptice = brzinaLoptice;
+	}
+	
+	public void ubrzajSe()
+	{
+		brzinaLoptice*=2;
+	}
+	
+	public void usporiSe()
+	{
+		brzinaLoptice/=2;
 	}
 }

@@ -19,6 +19,7 @@ public class Engine
 	private int minDuzina = 0;
 	private boolean kraj;
 	private int nivo;
+	private int brojZivota;
 
 	public Engine()
 	{
@@ -29,9 +30,10 @@ public class Engine
 	{
 		blokovi = new Blok[20][20];
 		daska = new Daska(100, 650, 100, 20);
-		loptica = new Loptica(510, 510, 10, Math.PI / 2, TipLoptice.NORMALNA);
+		loptica = new Loptica(510, 510, 10, Math.PI / 2, TipLoptice.NORMALNA,10);
 		kraj = false;
 		nivo++;
+		brojZivota=3;
 
 		if (nivo == 1)
 			postaviNivo1();
@@ -484,5 +486,15 @@ public class Engine
 	public void setNivo(int nivo)
 	{
 		this.nivo = nivo;
+	}
+
+	public int getBrojZivota()
+	{
+		return brojZivota;
+	}
+
+	public void setBrojZivota(int brojZivota)
+	{
+		this.brojZivota = brojZivota;
 	}
 }
