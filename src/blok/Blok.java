@@ -2,14 +2,14 @@ package blok;
 
 public abstract class Blok
 {
-	private int x;		// GORE_LEVO (X)
-	private int y;		// GORE_LEVO (Y)
+	private int x; // GORE_LEVO (X)
+	private int y; // GORE_LEVO (Y)
 	private int sirina;
 	private int visina;
 	private BojaBloka boja;
 	private String pocetnaSlika;
 	private boolean unisten;
-	
+
 	public Blok(int x, int y, int sirina, int visina, BojaBloka boja, String pocetnaSlika)
 	{
 		this.x = x;
@@ -20,7 +20,6 @@ public abstract class Blok
 		this.pocetnaSlika = pocetnaSlika;
 		unisten = false;
 	}
-	
 
 	public int getX()
 	{
@@ -71,7 +70,7 @@ public abstract class Blok
 	{
 		this.boja = boja;
 	}
-	
+
 	public String getPocetnaSlika()
 	{
 		return pocetnaSlika;
@@ -93,5 +92,5 @@ public abstract class Blok
 	}
 
 	public abstract void unistiSe(int i, int j, Blok[][] blokovi);
-	
+
 }

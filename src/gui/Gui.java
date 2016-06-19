@@ -74,6 +74,7 @@ public class Gui extends JFrame
 		f.setVgap(0);
 
 		loptica.setBounds(500, 500, 20, 20);
+		loptica.setOpaque(true);
 		ocistiPanelIDodajSliku(loptica, "/loptica.png");
 		glavniPanel.add(loptica, 0);
 
@@ -84,7 +85,7 @@ public class Gui extends JFrame
 
 		getContentPane().add(glavniPanel, BorderLayout.CENTER);
 
-		System.out.println(glavniPanel.getSize().toString());
+		//System.out.println(glavniPanel.getSize().toString());
 	}
 
 	private void mouseListener()

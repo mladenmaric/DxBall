@@ -12,7 +12,7 @@ public class BonusZivot extends Iznenadjenje
 
 	public void primeniIznenadjenje()
 	{
-		super.getEngine().setBrojZivota(super.getEngine().getBrojZivota()+1);
+		super.getEngine().setBrojZivota(super.getEngine().getBrojZivota() + 1);
 	}
 
 }

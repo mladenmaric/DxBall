@@ -30,7 +30,7 @@ public class Engine
 	{
 		blokovi = new Blok[20][20];
 		daska = new Daska(100, 650, 100, 20);
-		loptica = new Loptica(510, 510, 10, Math.PI / 2, TipLoptice.NORMALNA,10);
+		loptica = new Loptica(510, 510, 10, Math.PI / 3, TipLoptice.NORMALNA, 10);
 		kraj = false;
 		nivo++;
 		brojZivota=3;
@@ -387,7 +387,7 @@ public class Engine
 
 							blokovi[i][j].unistiSe(i, j, blokovi);
 							flag = true;
-							System.out.println("uslo1" + "  " + loptica.getUgaoKretanja());
+							//System.out.println("uslo1" + "  " + loptica.getUgaoKretanja());
 							break;
 						}
 					}
@@ -407,7 +407,7 @@ public class Engine
 
 							blokovi[i][j].unistiSe(i, j, blokovi);
 							flag = true;
-							System.out.println("uslo3" + "  " + loptica.getUgaoKretanja());
+							//System.out.println("uslo3" + "  " + loptica.getUgaoKretanja());
 							break;
 						}
 					}
@@ -425,7 +425,7 @@ public class Engine
 
 							blokovi[i][j].unistiSe(i, j, blokovi);
 							flag = true;
-							System.out.println("uslo4" + "  " + loptica.getUgaoKretanja());
+							//System.out.println("uslo4" + "  " + loptica.getUgaoKretanja());
 							break;
 						}
 					}
@@ -443,7 +443,7 @@ public class Engine
 
 							blokovi[i][j].unistiSe(i, j, blokovi);
 							flag = true;
-							System.out.println("uslo2" + "  " + loptica.getUgaoKretanja());
+							//System.out.println("uslo2" + "  " + loptica.getUgaoKretanja());
 							break;
 						}
 					}
