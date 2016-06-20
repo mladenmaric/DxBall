@@ -1,10 +1,19 @@
 package engine;
 
+import java.util.Random;
+
 import blok.Blok;
 import blok.BojaBloka;
 import blok.EksplozivanBlok;
 import blok.NormalanBlok;
 import daska.Daska;
+import iznenadjenja.BonusZivot;
+import iznenadjenja.Iznenadjenje;
+import iznenadjenja.ProduzenjeDaske;
+import iznenadjenja.SkracenjeDaske;
+import iznenadjenja.SmanjenjeZivota;
+import iznenadjenja.UbrzanjeLoptice;
+import iznenadjenja.UsporenjeLoptice;
 import loptica.Loptica;
 import loptica.TipLoptice;
 
@@ -23,6 +32,7 @@ public class Engine
 
 	public Engine()
 	{
+		brojZivota=3;
 		init();
 	}
 
@@ -33,7 +43,6 @@ public class Engine
 		loptica = new Loptica(510, 510, 10, Math.PI / 2, TipLoptice.NORMALNA,10);
 		kraj = false;
 		nivo++;
-		brojZivota=3;
 
 		if (nivo == 1)
 			postaviNivo1();
@@ -46,6 +55,29 @@ public class Engine
 		else if (nivo == 5)
 			postaviNivo5();
 		else if (nivo == 6) postaviNivo6();
+	}
+	
+	public void postaviIznenadjenja()
+	{
+		Iznenadjenje[] iznenadjenja=new Iznenadjenje[6];
+		iznenadjenja[0]=new BonusZivot(this, 0, 0, 50, 50);
+		iznenadjenja[1]=new ProduzenjeDaske(this, 0, 0, 50, 50);
+		iznenadjenja[2]=new SkracenjeDaske(this, 0, 0, 50, 50);
+		iznenadjenja[3]=new UbrzanjeLoptice(this, 0, 0, 50, 50);
+		iznenadjenja[4]=new SmanjenjeZivota(this, 0, 0, 50, 50);
+		iznenadjenja[5]=new UsporenjeLoptice(this, 0, 0, 50, 50);
+		
+		Random r=new Random();
+		int br=0;
+		
+		while(br<6)
+		{
+			int i=r.nextInt(20);
+			int j=r.nextInt(20);
+			
+			if(blokovi[i][j]!=null && )
+		}
+		
 	}
 
 	private void postaviNivo1()
@@ -337,7 +369,7 @@ public class Engine
 							&& loptica.getX() <= blokovi[i][j].getX() && loptica.getY() >= blokovi[i][j].getY()-loptica.getR()
 							&& loptica.getY() <= blokovi[i][j].getY() + blokovi[i][j].getVisina()+loptica.getR())
 					{
-						if ((loptica.getUgaoKretanja() >= Math.PI / 2 && loptica.getUgaoKretanja() <= Math.PI)
+						if ((loptica.getUgaoKretanja() >= 0 && loptica.getUgaoKretanja() <= Math.PI/2)
 								|| (loptica.getUgaoKretanja() >= 3 * Math.PI / 2
 										&& loptica.getUgaoKretanja() <= 2 * Math.PI))
 						{
@@ -415,7 +447,11 @@ public class Engine
 				if(blokovi[i][j]!=null && !blokovi[i][j].isUnisten())
 					flag=false;
 		
-		kraj=flag;
+		if(flag)
+			brojZivota--;
+		
+		if(brojZivota==0)
+			kraj=true;
 	}
 
 	public boolean isKraj()
