@@ -5,9 +5,9 @@ import engine.Engine;
 public class ProduzenjeDaske extends Iznenadjenje
 {
 
-	public ProduzenjeDaske(Engine engine, int x, int y, int sirina, int visina)
+	public ProduzenjeDaske(Engine engine, int sirina, int visina)
 	{
-		super(engine, x, y, sirina, visina);
+		super(engine, sirina, visina,"/ProduzenjeDaske.png");
 	}
 
 	public void primeniIznenadjenje()
