@@ -93,6 +93,7 @@ public class Engine
 					&& !(blokovi[i][j] instanceof NeprobojniBlok))
 			{
 				blokovi[i][j].setIznenadjenje(iznenadjenja[br]);
+				System.out.println("koordinate iznenadjenja "+i+"  "+j);
 				iznenadjenja[br].setX(blokovi[i][j].getX());
 				iznenadjenja[br].setY(blokovi[i][j].getY());
 				br++;
@@ -363,6 +364,7 @@ public class Engine
 				double p = loptica.getX() - daska.getX() - daska.getSirina() / 2;
 				loptica.setUgaoKretanja(Math.PI / 2 - p / 37);
 				// loptica.setY(daska.getY());
+				//System.out.println("UDARIO");
 				// System.out.println(loptica.getUgaoKretanja());
 			}
 		}
@@ -372,9 +374,8 @@ public class Engine
 
 	private void unistiBlokIPustiIznenadjenje(int i, int j)
 	{
+		//if (blokovi[i][j].getIznenadjenje() != null) blokovi[i][j].getIznenadjenje().setVidljivo(true);
 		blokovi[i][j].unistiSe(i, j, blokovi);
-
-		if (blokovi[i][j].getIznenadjenje() != null) blokovi[i][j].getIznenadjenje().setVidljivo(true);
 	}
 
 	public void odbijLopticuOdBloka()
@@ -473,7 +474,7 @@ public class Engine
 
 	public void pomeriLopticu(double duzina)
 	{
-		int x = (int) Math.round((Math.cos(loptica.getUgaoKretanja()) * duzina));
+		int x = (int) Math.round(Math.cos(loptica.getUgaoKretanja()) * duzina);
 		int y = (int) Math.round((Math.sin(loptica.getUgaoKretanja()) * duzina));
 
 		loptica.setY(loptica.getY() - y);
@@ -496,6 +497,7 @@ public class Engine
 				{
 					iznenadjenja[i].primeniIznenadjenje();
 					iznenadjenja[i].setVidljivo(false);
+					iznenadjenja[i]=null;
 				}
 			}
 	}
