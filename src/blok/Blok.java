@@ -22,6 +22,7 @@ public abstract class Blok
 		this.boja = boja;
 		this.pocetnaSlika = pocetnaSlika;
 		unisten = false;
+		iznenadjenje = null;
 	}
 
 	public int getX()

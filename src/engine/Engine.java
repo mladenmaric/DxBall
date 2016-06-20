@@ -66,10 +66,13 @@ public class Engine
 			postaviNivo4();
 		else if (nivo == 5)
 			postaviNivo5();
-		else if (nivo == 6) postaviNivo6();
+		else if (nivo == 6) 
+			postaviNivo6();
+		
+		postaviIznenadjenja();
 	}
 
-	public void postaviIznenadjenja()
+	private void postaviIznenadjenja()
 	{
 		iznenadjenja[0] = new BonusZivot(this, 50, 50);
 		iznenadjenja[1] = new ProduzenjeDaske(this, 50, 50);
@@ -86,7 +89,7 @@ public class Engine
 			int i = r.nextInt(20);
 			int j = r.nextInt(20);
 
-			if (blokovi[i][j] != null && blokovi[i][j].getIznenadjenje() != null
+			if (blokovi[i][j] != null && blokovi[i][j].getIznenadjenje() == null
 					&& !(blokovi[i][j] instanceof NeprobojniBlok))
 			{
 				blokovi[i][j].setIznenadjenje(iznenadjenja[br]);
