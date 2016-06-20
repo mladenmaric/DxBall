@@ -44,6 +44,7 @@ public class Gui extends JFrame
 		osveziGuiIznenadjenja();
 		mouseListener();
 		dodajTimerLoptica();
+		dodajTimerIznenadjenje();
 	}
 
 	private void postaviProzor()
@@ -127,12 +128,9 @@ public class Gui extends JFrame
 	{
 		timerLoptica = new Timer(engine.getLoptica().getBrzinaLoptice(), new ActionListener()
 		{
-
-			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				engine.pomeriLopticu(10);
-	//			spustiIznenadjenja();
 				
 				if (engine.isKraj())
 				{
@@ -154,7 +152,15 @@ public class Gui extends JFrame
 	
 	private void dodajTimerIznenadjenje()
 	{
+		timerIznenadjenje = new Timer(50, new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				osveziGuiIznenadjenja();
+			}
+		});
 		
+		timerIznenadjenje.start();
 	}
 
 	public void ocistiPanelIDodajSliku(JPanel panel, String image)
@@ -180,13 +186,21 @@ public class Gui extends JFrame
 	
 	private void osveziGuiIznenadjenja()
 	{
-//		// PRIKAZI IZNENADJENJA
-//		Iznenadjenje[] izn = engine.getIznenadjenja();
-//		for (Iznenadjenje iznenadjenje : izn)
-//		{
-//			if (izn.isVidljivo)
-//				
-//		}
+		// PRIKAZI IZNENADJENJA
+		Iznenadjenje[] izn = engine.getIznenadjenja();
+		for (int i = 0; i < 6; i++)
+		{
+			if (izn[i].isVidljivo())
+			{
+				ocistiPanelIDodajSliku(iznenadjenja[i], izn[i].getSlika());
+				izn[i].spustiSe();
+				
+				System.out.println("jbm");
+			}
+			else
+				ocistiPanelIDodajSliku(iznenadjenja[i], null);
+				
+		}
 		
 	}
 

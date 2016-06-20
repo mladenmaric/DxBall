@@ -67,9 +67,9 @@ public class Daska
 	{
 		this.duzina *= 2;
 	}
-	
+
 	public void skratiSe()
 	{
-		this.duzina/=2;
+		this.duzina /= 2;
 	}
 }
