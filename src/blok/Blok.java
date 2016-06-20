@@ -1,5 +1,7 @@
 package blok;
 
+import iznenadjenja.Iznenadjenje;
+
 public abstract class Blok
 {
 	private int x; // GORE_LEVO (X)
@@ -9,6 +11,7 @@ public abstract class Blok
 	private BojaBloka boja;
 	private String pocetnaSlika;
 	private boolean unisten;
+	private Iznenadjenje iznenadjenje;
 
 	public Blok(int x, int y, int sirina, int visina, BojaBloka boja, String pocetnaSlika)
 	{
@@ -89,6 +92,16 @@ public abstract class Blok
 	public void setUnisten(boolean unisten)
 	{
 		this.unisten = unisten;
+	}
+	
+	public Iznenadjenje getIznenadjenje()
+	{
+		return iznenadjenje;
+	}
+
+	public void setIznenadjenje(Iznenadjenje iznenadjenje)
+	{
+		this.iznenadjenje = iznenadjenje;
 	}
 
 	public abstract void unistiSe(int i, int j, Blok[][] blokovi);
