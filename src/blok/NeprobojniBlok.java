@@ -12,6 +12,8 @@ public class NeprobojniBlok extends Blok
 	public void unistiSe(int i, int j, Blok[][] blokovi)
 	{
 		blokovi[i][j].setUnisten(true);
+		if (getIznenadjenje() != null)
+			getIznenadjenje().setVidljivo(true);
 	}
 	
 	// poziva se kad loptica udari u ovaj blok sa: unisti = false

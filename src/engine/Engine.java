@@ -24,9 +24,9 @@ public class Engine
 	private Blok[][] blokovi;
 	private Daska daska;
 	private Loptica loptica;
-	private int maxSirina = 1183;
-	private int maxDuzina = 750;
-	private int minSirina = 183;
+	private int maxSirina = 1000;
+	private int maxDuzina = 741;
+	private int minSirina = 0;
 	private int minDuzina = 0;
 	private boolean kraj;
 	private int nivo;
@@ -42,8 +42,8 @@ public class Engine
 	{
 		nivo = 1;
 		blokovi = new Blok[20][20];
-		daska = new Daska(100, 650, 100, 20);
-		loptica = new Loptica(510, 510, 10, Math.PI / 3, TipLoptice.NORMALNA, 50);
+		daska = new Daska(450, 650, 100, 20);
+		loptica = new Loptica(500, 640, 10, Math.PI / 2, TipLoptice.NORMALNA, 50);
 		iznenadjenja = new Iznenadjenje[6];
 		kraj = false;
 
@@ -109,53 +109,53 @@ public class Engine
 			for (int j = 0; j < 20; j++)
 			{
 				if (i == 5 && j >= 5 && j <= 14)
-					blokovi[i][j] = new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.CRVENA, "/CRVENA.png");
+					blokovi[i][j] = new NormalanBlok(50 * j, 30 * i, 50, 30, BojaBloka.CRVENA, "/CRVENA.png");
 				else if (i == 6 && j >= 2 && j <= 17)
-					blokovi[i][j] = new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.ROZE, "/ROZE.png");
+					blokovi[i][j] = new NormalanBlok(50 * j, 30 * i, 50, 30, BojaBloka.ROZE, "/ROZE.png");
 				else if (i == 7 && j >= 1 && j <= 18)
-					blokovi[i][j] = new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.LJUBICASTA,
+					blokovi[i][j] = new NormalanBlok(50 * j, 30 * i, 50, 30, BojaBloka.LJUBICASTA,
 							"/LJUBICASTA.png");
 				else if (i == 8)
-					blokovi[i][j] = new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.TAMNOLJUBICASTA,
+					blokovi[i][j] = new NormalanBlok(50 * j, 30 * i, 50, 30, BojaBloka.TAMNOLJUBICASTA,
 							"/TAMNOLJUBICASTA.png");
 				else if (i == 9)
-					blokovi[i][j] = new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.LJUBICASTA,
+					blokovi[i][j] = new NormalanBlok(50 * j, 30 * i, 50, 30, BojaBloka.LJUBICASTA,
 							"/LJUBICASTA.png");
 				else if (i == 10)
-					blokovi[i][j] = new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.ROZE, "/ROZE.png");
+					blokovi[i][j] = new NormalanBlok(50 * j, 30 * i, 50, 30, BojaBloka.ROZE, "/ROZE.png");
 				else if (i == 11)
-					blokovi[i][j] = new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.CRVENA, "/CRVENA.png");
+					blokovi[i][j] = new NormalanBlok(50 * j, 30 * i, 50, 30, BojaBloka.CRVENA, "/CRVENA.png");
 				else if (i == 12 && j >= 1 && j <= 18)
-					blokovi[i][j] = new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.ROZE, "/ROZE.png");
+					blokovi[i][j] = new NormalanBlok(50 * j, 30 * i, 50, 30, BojaBloka.ROZE, "/ROZE.png");
 				else if (i == 13 && j >= 2 && j <= 17)
-					blokovi[i][j] = new NormalanBlok(183 + 50 * j, 30 * i, 50, 30, BojaBloka.LJUBICASTA,
+					blokovi[i][j] = new NormalanBlok(50 * j, 30 * i, 50, 30, BojaBloka.LJUBICASTA,
 							"/LJUBICASTA.png");
-				else if (i == 14 && j >= 5 && j <= 14) blokovi[i][j] = new NormalanBlok(183 + 50 * j, 30 * i, 50, 30,
+				else if (i == 14 && j >= 5 && j <= 14) blokovi[i][j] = new NormalanBlok(50 * j, 30 * i, 50, 30,
 						BojaBloka.TAMNOLJUBICASTA, "/TAMNOLJUBICASTA.png");
 			}
 
 		for (int i = 0; i < 3; i++)
-			blokovi[i + 6][2 - i] = new EksplozivanBlok(183 + 50 * (2 - i), 30 * (i + 6), 50, 30, BojaBloka.ZUTA,
+			blokovi[i + 6][2 - i] = new EksplozivanBlok(50 * (2 - i), 30 * (i + 6), 50, 30, BojaBloka.ZUTA,
 					"/ZUTA.png");
 
 		for (int i = 0; i < 7; i++)
-			blokovi[i + 5][7 - i] = new EksplozivanBlok(183 + 50 * (7 - i), 30 * (i + 5), 50, 30, BojaBloka.ZUTA,
+			blokovi[i + 5][7 - i] = new EksplozivanBlok(50 * (7 - i), 30 * (i + 5), 50, 30, BojaBloka.ZUTA,
 					"/ZUTA.png");
 
 		for (int i = 0; i < 9; i++)
-			blokovi[i + 5][11 - i] = new EksplozivanBlok(183 + 50 * (11 - i), 30 * (i + 5), 50, 30, BojaBloka.ZUTA,
+			blokovi[i + 5][11 - i] = new EksplozivanBlok(50 * (11 - i), 30 * (i + 5), 50, 30, BojaBloka.ZUTA,
 					"/ZUTA.png");
 
 		for (int i = 0; i < 9; i++)
-			blokovi[i + 6][14 - i] = new EksplozivanBlok(183 + 50 * (14 - i), 30 * (i + 6), 50, 30, BojaBloka.ZUTA,
+			blokovi[i + 6][14 - i] = new EksplozivanBlok(50 * (14 - i), 30 * (i + 6), 50, 30, BojaBloka.ZUTA,
 					"/ZUTA.png");
 
 		for (int i = 0; i < 8; i++)
-			blokovi[i + 7][17 - i] = new EksplozivanBlok(183 + 50 * (17 - i), 30 * (i + 7), 50, 30, BojaBloka.ZUTA,
+			blokovi[i + 7][17 - i] = new EksplozivanBlok(50 * (17 - i), 30 * (i + 7), 50, 30, BojaBloka.ZUTA,
 					"/ZUTA.png");
 
 		for (int i = 0; i < 6; i++)
-			blokovi[i + 9][19 - i] = new EksplozivanBlok(183 + 50 * (19 - i), 30 * (i + 9), 50, 30, BojaBloka.ZUTA,
+			blokovi[i + 9][19 - i] = new EksplozivanBlok(50 * (19 - i), 30 * (i + 9), 50, 30, BojaBloka.ZUTA,
 					"/ZUTA.png");
 	}
 
@@ -372,9 +372,10 @@ public class Engine
 
 	private void unistiBlokIPustiIznenadjenje(int i, int j)
 	{
-		blokovi[i][j].unistiSe(i, j, blokovi);
-
-		if (blokovi[i][j].getIznenadjenje() != null) blokovi[i][j].getIznenadjenje().setVidljivo(true);
+		if (blokovi[i][j].getIznenadjenje() != null) 
+			blokovi[i][j].getIznenadjenje().setVidljivo(true);
+		
+		blokovi[i][j].unistiSe(i, j, blokovi);		
 	}
 
 	public void odbijLopticuOdBloka()
@@ -489,13 +490,13 @@ public class Engine
 		for (int i = 0; i < iznenadjenja.length; i++)
 			if (iznenadjenja[i] != null && iznenadjenja[i].isVidljivo())
 			{
-				if (iznenadjenja[i].getY() >= daska.getY()
+				if (iznenadjenja[i].getY() <= daska.getY()
 						&& iznenadjenja[i].getY() + iznenadjenja[i].getVisina() >= daska.getY()
 						&& iznenadjenja[i].getX() + iznenadjenja[i].getSirina() >= daska.getX()
 						&& iznenadjenja[i].getX() <= daska.getX() + daska.getSirina())
 				{
 					iznenadjenja[i].primeniIznenadjenje();
-					iznenadjenja[i].setVidljivo(false);
+					iznenadjenja[i] = null;
 				}
 			}
 	}

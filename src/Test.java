@@ -1,11 +1,11 @@
-import gui.Gui;
+import gui.GuicinaMamuJojJebem;
 
 public class Test
 {
 
 	public static void main(String[] args)
 	{
-		new Gui("DX - BALL");
+		new GuicinaMamuJojJebem("DX - BALL");
 	}
 
 }
