@@ -130,7 +130,8 @@ public class Gui extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				engine.pomeriLopticu(10);
+				for(int i=0;i<7;i++)
+					engine.pomeriLopticu(2);
 				
 				if (engine.isKraj())
 				{
