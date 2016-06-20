@@ -19,7 +19,7 @@ import javax.swing.border.EmptyBorder;
 import engine.Engine;
 import iznenadjenja.Iznenadjenje;
 
-public class GuicinaMamuJojJebem extends JFrame
+public class Gui extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private Engine engine = new Engine();
@@ -34,7 +34,7 @@ public class GuicinaMamuJojJebem extends JFrame
 	
 	
 	
-	public GuicinaMamuJojJebem(String title)
+	public Gui(String title)
 	{
 		super(title);
 		init();
