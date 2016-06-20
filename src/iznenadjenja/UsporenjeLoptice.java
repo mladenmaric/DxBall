@@ -5,9 +5,9 @@ import engine.Engine;
 public class UsporenjeLoptice extends Iznenadjenje
 {
 
-	public UsporenjeLoptice(Engine engine, int x, int y, int sirina, int visina)
+	public UsporenjeLoptice(Engine engine, int sirina, int visina)
 	{
-		super(engine, x, y, sirina, visina);
+		super(engine, sirina, visina, "/UsporenjeLoptice.png");
 	}
 
 	public void primeniIznenadjenje()
