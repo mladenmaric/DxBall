@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,16 +15,19 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import engine.Engine;
+import iznenadjenja.Iznenadjenje;
 
 public class Gui extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private JPanel[][] blokovi;
+	private JPanel[] iznenadjenja;
 	private JPanel loptica;
 	private MyPanel daska;
 	private JLayeredPane glavniPanel;
 	private Engine engine = new Engine();
-	private Timer timer;
+	private Timer timerLoptica;
+	private Timer timerIznenadjenje;
 
 	public Gui(String naziv)
 	{
@@ -36,9 +40,10 @@ public class Gui extends JFrame
 		postaviDeloveIgre();
 		postaviProzor();
 
-		osveziGui();
+		osveziGuiBlokovi();
+		osveziGuiIznenadjenja();
 		mouseListener();
-		dodajTimer();
+		dodajTimerLoptica();
 	}
 
 	private void postaviProzor()
@@ -67,6 +72,17 @@ public class Gui extends JFrame
 				glavniPanel.add(blokovi[i][j], 0);
 			}
 
+		iznenadjenja = new JPanel[6];
+		
+		for (int i = 0; i < 6; i++)
+		{
+			iznenadjenja[i] = new JPanel();
+			iznenadjenja[i].setPreferredSize(new Dimension(50, 50));
+			iznenadjenja[i].setOpaque(true);
+			
+			glavniPanel.add(iznenadjenja[i], 0);
+		}
+		
 		loptica = new JPanel();
 
 		FlowLayout f = (FlowLayout) loptica.getLayout();
@@ -84,8 +100,6 @@ public class Gui extends JFrame
 		glavniPanel.add(daska, 0);
 
 		getContentPane().add(glavniPanel, BorderLayout.CENTER);
-
-		//System.out.println(glavniPanel.getSize().toString());
 	}
 
 	private void mouseListener()
@@ -104,26 +118,25 @@ public class Gui extends JFrame
 			@Override
 			public void mouseDragged(MouseEvent e)
 			{
-				// TODO Auto-generated method stub
-
 			}
 		});
 
 	}
 
-	private void dodajTimer()
+	private void dodajTimerLoptica()
 	{
-		timer = new Timer(35, new ActionListener()
+		timerLoptica = new Timer(engine.getLoptica().getBrzinaLoptice(), new ActionListener()
 		{
 
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				engine.pomeriLopticu(10);
-
+	//			spustiIznenadjenja();
+				
 				if (engine.isKraj())
 				{
-					timer.stop();
+					timerLoptica.stop();
 					JOptionPane.showMessageDialog(null, "Izgubili ste!");
 				}
 
@@ -132,14 +145,16 @@ public class Gui extends JFrame
 				int precnik = engine.getLoptica().getR() * 2;
 
 				loptica.setBounds(x, y, precnik, precnik);
-				loptica.revalidate();
-				loptica.repaint();
-
-				osveziGui();
+				osveziGuiBlokovi();
 			}
 		});
 
-		timer.start();
+		timerLoptica.start();
+	}
+	
+	private void dodajTimerIznenadjenje()
+	{
+		
 	}
 
 	public void ocistiPanelIDodajSliku(JPanel panel, String image)
@@ -151,14 +166,28 @@ public class Gui extends JFrame
 		panel.repaint();
 	}
 
-	private void osveziGui()
+	private void osveziGuiBlokovi()
 	{
+		// PRIKAZI BLOKOVE		
 		for (int i = 0; i < 20; i++)
 			for (int j = 0; j < 20; j++)
 				if (engine.getBlok(i, j) == null || engine.getBlok(i, j).isUnisten())
 					ocistiPanelIDodajSliku(blokovi[i][j], null);
 				else
 					ocistiPanelIDodajSliku(blokovi[i][j], engine.getBlok(i, j).getPocetnaSlika());
+		
+	}
+	
+	private void osveziGuiIznenadjenja()
+	{
+//		// PRIKAZI IZNENADJENJA
+//		Iznenadjenje[] izn = engine.getIznenadjenja();
+//		for (Iznenadjenje iznenadjenje : izn)
+//		{
+//			if (izn.isVidljivo)
+//				
+//		}
+		
 	}
 
 }

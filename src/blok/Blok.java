@@ -103,6 +103,11 @@ public abstract class Blok
 	{
 		this.iznenadjenje = iznenadjenje;
 	}
+	
+	public void pustiIznenadjenje()
+	{
+		
+	}
 
 	public abstract void unistiSe(int i, int j, Blok[][] blokovi);
 
