@@ -1,11 +1,12 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.JFrame;
@@ -13,6 +14,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
 
 import engine.Engine;
 import iznenadjenja.Iznenadjenje;
@@ -20,46 +22,64 @@ import iznenadjenja.Iznenadjenje;
 public class Gui extends JFrame
 {
 	private static final long serialVersionUID = 1L;
+	private Engine engine = new Engine();
+	private JPanel contentPane;
 	private JPanel[][] blokovi;
 	private JPanel[] iznenadjenja;
 	private JPanel loptica;
-	private MyPanel daska;
+	private JPanel daska;
 	private JLayeredPane glavniPanel;
-	private Engine engine = new Engine();
 	private Timer timerLoptica;
 	private Timer timerIznenadjenje;
-
-	public Gui(String naziv)
+	
+	
+	
+	public Gui(String title)
 	{
-		super(naziv);
+		super(title);
 		init();
 	}
-
+	
 	private void init()
 	{
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setExtendedState(Frame.MAXIMIZED_BOTH);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null); 
+		
+		glavniPanel = new JLayeredPane();
+		glavniPanel.setOpaque(true);
+		glavniPanel.setBackground(Color.BLACK);
+		glavniPanel.setBounds(183, 0, 1000, 741);
+		contentPane.add(glavniPanel); 
+		
+		JPanel panelLevo = new JPanel();
+		panelLevo.setBackground(Color.WHITE);
+		panelLevo.setBounds(0, 0, 183, 741);
+		contentPane.add(panelLevo);
+		
+		JPanel panelDesno = new JPanel();
+		panelDesno.setBackground(Color.WHITE);
+		panelDesno.setBounds(1183, 0, 180, 741);
+		contentPane.add(panelDesno); 
+		
+		setVisible(true);
+		
 		postaviDeloveIgre();
-		postaviProzor();
-
-		osveziGuiBlokovi();
-		osveziGuiIznenadjenja();
 		mouseListener();
+		osveziGuiBlokovi();
 		dodajTimerLoptica();
 		dodajTimerIznenadjenje();
+		
 	}
-
-	private void postaviProzor()
-	{
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setExtendedState(MAXIMIZED_BOTH);
-		setVisible(true);
-	}
-
+	
 	private void postaviDeloveIgre()
-	{
-		glavniPanel = new JLayeredPane();
-		// glavniPanel.setPreferredSize(new Dimension(width, height));
-
+	{		
+		// BLOKOVI
 		blokovi = new JPanel[20][20];
+		
 		for (int i = 0; i < 20; i++)
 			for (int j = 0; j < 20; j++)
 			{
@@ -69,40 +89,53 @@ public class Gui extends JFrame
 				f.setHgap(1);
 				f.setVgap(1);
 
-				blokovi[i][j].setBounds(183 + 50 * j, 30 * i, 50, 30);
+				blokovi[i][j].setBounds(50 * j, 30 * i, 50, 30);
+				blokovi[i][j].setOpaque(true);
 				glavniPanel.add(blokovi[i][j], 0);
 			}
 
+		// IZNENADJENJA
 		iznenadjenja = new JPanel[6];
 		
 		for (int i = 0; i < 6; i++)
 		{
 			iznenadjenja[i] = new JPanel();
-			iznenadjenja[i].setPreferredSize(new Dimension(50, 50));
+			iznenadjenja[i].setSize(50, 50);
 			iznenadjenja[i].setOpaque(true);
 			
 			glavniPanel.add(iznenadjenja[i], 0);
 		}
 		
+		// LOPTICA
 		loptica = new JPanel();
 
 		FlowLayout f = (FlowLayout) loptica.getLayout();
 		f.setHgap(0);
 		f.setVgap(0);
 
-		loptica.setBounds(500, 500, 20, 20);
+		int x = engine.getLoptica().getX() - engine.getLoptica().getR();
+		int y = engine.getLoptica().getY() - engine.getLoptica().getR();
+		int precnik = engine.getLoptica().getR() * 2;
+
+		loptica.setBounds(x, y, precnik, precnik);
 		loptica.setOpaque(true);
-		ocistiPanelIDodajSliku(loptica, "/loptica.png");
+		ocistiPanelIDodajSliku(loptica, "/Loptica.png");
 		glavniPanel.add(loptica, 0);
 
-		daska = new MyPanel(TipPanela.DASKA);
+		// DASKA
+		daska = new JPanel();
+		
+		FlowLayout g = (FlowLayout) daska.getLayout();
+		g.setHgap(0);
+		g.setVgap(0);
+		
 		daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
 				engine.getDaska().getDuzina());
+		daska.setOpaque(true);
+		ocistiPanelIDodajSliku(daska, "/Daska.png");
 		glavniPanel.add(daska, 0);
-
-		getContentPane().add(glavniPanel, BorderLayout.CENTER);
 	}
-
+	
 	private void mouseListener()
 	{
 		addMouseMotionListener(new MouseMotionListener()
@@ -121,6 +154,44 @@ public class Gui extends JFrame
 			{
 			}
 		});
+		
+		addMouseListener(new MouseListener()
+		{
+			
+			@Override
+			public void mouseReleased(MouseEvent e)
+			{
+				timerLoptica.start();				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+		});
 
 	}
 
@@ -130,9 +201,8 @@ public class Gui extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				for(int i=0;i<7;i++)
-					engine.pomeriLopticu(2);
-				
+				engine.pomeriLopticu(5);
+
 				if (engine.isKraj())
 				{
 					timerLoptica.stop();
@@ -145,10 +215,9 @@ public class Gui extends JFrame
 
 				loptica.setBounds(x, y, precnik, precnik);
 				osveziGuiBlokovi();
+				
 			}
 		});
-
-		timerLoptica.start();
 	}
 	
 	private void dodajTimerIznenadjenje()
@@ -158,6 +227,8 @@ public class Gui extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				osveziGuiIznenadjenja();
+				engine.prihvatiIznenadjenje();
+				
 			}
 		});
 		
@@ -191,18 +262,21 @@ public class Gui extends JFrame
 		Iznenadjenje[] izn = engine.getIznenadjenja();
 		for (int i = 0; i < 6; i++)
 		{
-			if (izn[i].isVidljivo())
+			if (izn[i] != null)
 			{
-				ocistiPanelIDodajSliku(iznenadjenja[i], izn[i].getSlika());
-				izn[i].spustiSe();
-				
-				System.out.println("jbm");
+				if (izn[i].isVidljivo())
+				{
+					iznenadjenja[i].setBounds(izn[i].getX(), izn[i].getY(), izn[i].getSirina(), izn[i].getVisina());
+					ocistiPanelIDodajSliku(iznenadjenja[i], izn[i].getSlika());
+					izn[i].spustiSe();
+				}
 			}
 			else
-				ocistiPanelIDodajSliku(iznenadjenja[i], null);
+			{
+				iznenadjenja[i].setVisible(false);
+			}
 				
 		}
-		
 	}
-
+	
 }

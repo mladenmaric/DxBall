@@ -11,6 +11,8 @@ public class NormalanBlok extends Blok
 	public void unistiSe(int i, int j, Blok[][] blokovi)
 	{
 		blokovi[i][j].setUnisten(true);
+		if (getIznenadjenje() != null)
+			getIznenadjenje().setVidljivo(true);
 	}
 	
 }

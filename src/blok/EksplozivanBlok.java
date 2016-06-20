@@ -10,6 +10,8 @@ public class EksplozivanBlok extends Blok
 	public void unistiSe(int i, int j, Blok[][] blokovi)
 	{
 		setUnisten(true);
+		if (getIznenadjenje() != null)
+			getIznenadjenje().setVidljivo(true);
 		
 		// GORE
 		if (i > 0 && blokovi[i - 1][j] != null && !blokovi[i - 1][j].isUnisten())
