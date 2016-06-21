@@ -10,13 +10,16 @@ import blok.OkovaniBlok;
 import daska.Daska;
 import iznenadjenja.BonusZivot;
 import iznenadjenja.Iznenadjenje;
+import iznenadjenja.ProbojnostLoptice;
 import iznenadjenja.ProduzenjeDaske;
 import iznenadjenja.SkracenjeDaske;
 import iznenadjenja.SmanjenjeZivota;
 import iznenadjenja.UbrzanjeLoptice;
 import iznenadjenja.UsporenjeLoptice;
+import iznenadjenja.VatrenostLoptice;
 import loptica.Loptica;
-import loptica.TipLoptice;
+import loptica.NormalnaLoptica;
+import loptica.ProbijajucaLoptica;
 
 public class Engine
 {
@@ -31,28 +34,27 @@ public class Engine
 	private int nivo;
 	private int brojZivota;
 	private Iznenadjenje[] iznenadjenja;
+	private boolean pomeranjeLopticeSaDaskom;
 
 	public Engine()
 	{
 		init();
 	}
-	
+
 	public void postaviPocetneVrednosti()
 	{
-		for (int i = 0; i < 20; i++)
-			for (int j = 0; j < 20; j++)
-				blokovi[i][j] = null;
-		
 		daska.setVisina(20);
 		daska.setSirina(100);
 		daska.setX(450);
 		daska.setY(700);
-		loptica.setX(500);
-		loptica.setY(690);
-		loptica.setUgaoKretanja(Math.PI/2);
-		loptica.setTipLoptice(TipLoptice.NORMALNA);
-		loptica.setBrzinaLoptice(15);
-		loptica.setR(7);
+
+		int r = 7;
+		int x = daska.getX() + daska.getSirina() / 2;
+		int y = daska.getY() - r;
+
+		loptica = new NormalnaLoptica(x, y, 7, Math.PI / 2, 15);
+
+		pomeranjeLopticeSaDaskom = true;
 	}
 
 	public void init()
@@ -60,19 +62,31 @@ public class Engine
 		nivo = 1;
 		brojZivota = 3;
 		kraj = false;
-		
+
 		blokovi = new Blok[20][20];
 		daska = new Daska();
-		loptica = new Loptica();
-		iznenadjenja = new Iznenadjenje[6];
+		iznenadjenja = new Iznenadjenje[8];
 		
+		iznenadjenja[0] = new BonusZivot(this);
+		iznenadjenja[1] = new ProduzenjeDaske(this);
+		iznenadjenja[2] = new SkracenjeDaske(this);
+		iznenadjenja[3] = new UbrzanjeLoptice(this);
+		iznenadjenja[4] = new SmanjenjeZivota(this);
+		iznenadjenja[5] = new UsporenjeLoptice(this);
+		iznenadjenja[6] = new VatrenostLoptice(this);
+		iznenadjenja[7] = new ProbojnostLoptice(this);
+
 		postaviNivo();
 	}
 
 	public void postaviNivo()
-	{	
+	{
 		postaviPocetneVrednosti();
-		
+
+		for (int i = 0; i < 20; i++)
+			for (int j = 0; j < 20; j++)
+				blokovi[i][j] = null;
+
 		if (nivo == 1)
 			postaviNivo1();
 		else if (nivo == 2)
@@ -83,35 +97,27 @@ public class Engine
 			postaviNivo4();
 		else if (nivo == 5)
 			postaviNivo5();
-		else if (nivo == 6) 
-			postaviNivo6();
 		
 		postaviIznenadjenja();
 	}
 
 	private void postaviIznenadjenja()
 	{
-		iznenadjenja[0] = new BonusZivot(this);
-		iznenadjenja[1] = new ProduzenjeDaske(this);
-		iznenadjenja[2] = new SkracenjeDaske(this);
-		iznenadjenja[3] = new UbrzanjeLoptice(this);
-		iznenadjenja[4] = new SmanjenjeZivota(this);
-		iznenadjenja[5] = new UsporenjeLoptice(this);
-
 		Random r = new Random();
 		int br = 0;
 
-		while (br < 6)
+		while (br < 4)
 		{
 			int i = r.nextInt(20);
 			int j = r.nextInt(20);
+			int br2=r.nextInt(8);
 
 			if (blokovi[i][j] != null && blokovi[i][j].getIznenadjenje() == null
 					&& !(blokovi[i][j] instanceof NeprobojniBlok))
 			{
-				blokovi[i][j].setIznenadjenje(iznenadjenja[br]);
-				iznenadjenja[br].setX(blokovi[i][j].getX());
-				iznenadjenja[br].setY(blokovi[i][j].getY());
+				iznenadjenja[br2].setX(blokovi[i][j].getX());
+				iznenadjenja[br2].setY(blokovi[i][j].getY());
+				blokovi[i][j].setIznenadjenje(iznenadjenja[br2]);
 				br++;
 			}
 		}
@@ -141,8 +147,7 @@ public class Engine
 					blokovi[i][j] = new NormalanBlok(i, j, "/ROZE.png");
 				else if (i == 13 && j >= 2 && j <= 17)
 					blokovi[i][j] = new NormalanBlok(i, j, "/LJUBICASTA.png");
-				else if (i == 14 && j >= 5 && j <= 14) 
-					blokovi[i][j] = new NormalanBlok(i, j, "/TAMNOLJUBICASTA.png");
+				else if (i == 14 && j >= 5 && j <= 14) blokovi[i][j] = new NormalanBlok(i, j, "/TAMNOLJUBICASTA.png");
 			}
 
 		for (int i = 0; i < 3; i++)
@@ -301,8 +306,7 @@ public class Engine
 					blokovi[i][j] = new EksplozivanBlok(i, j);
 				else if (i == 18 && (j == 8 || j == 11))
 					blokovi[i][j] = new NormalanBlok(i, j, "/CRVENA.png");
-				else if (i == 18 && (j == 9 || j == 10))
-					blokovi[i][j] = new EksplozivanBlok(i, j);
+				else if (i == 18 && (j == 9 || j == 10)) blokovi[i][j] = new EksplozivanBlok(i, j);
 			}
 	}
 
@@ -320,12 +324,7 @@ public class Engine
 	{
 
 	}
-
-	private void postaviNivo6()
-	{
-
-	}
-
+	
 	public void odbijLopticuOdZida()
 	{
 		if (loptica.getX() - loptica.getR() <= minSirina)
@@ -371,258 +370,201 @@ public class Engine
 		}
 	}
 
-	private void unistiBlok(int i, int j)
-	{
-		if (!(blokovi[i][j] instanceof NeprobojniBlok))
-			blokovi[i][j].unistiSe(blokovi);		
-	}
-
-//	public void odbijLopticuOdBloka()
-//	{
-//		boolean flag = false;
-//
-//		for (int i = 0; i < 20; i++)
-//		{
-//			for (int j = 0; j < 20; j++)
-//			{
-//				if (blokovi[i][j] != null && !blokovi[i][j].isUnisten())
-//				{
-//					if (loptica.getX() - loptica.getR() <= blokovi[i][j].getX() + blokovi[i][j].getSirina()
-//							&& loptica.getX() >= blokovi[i][j].getX() + blokovi[i][j].getSirina()
-//							&& loptica.getY() >= blokovi[i][j].getY() - loptica.getR()
-//							&& loptica.getY() <= blokovi[i][j].getY() + blokovi[i][j].getVisina() + loptica.getR())
-//					{
-//						if (loptica.getUgaoKretanja() >= Math.PI / 2 && loptica.getUgaoKretanja() <= 3 * Math.PI / 2)
-//						{
-//							if (loptica.getUgaoKretanja() >= Math.PI / 2 && loptica.getUgaoKretanja() <= Math.PI)
-//								loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
-//							else
-//								loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
-//
-//							unistiBlok(i, j);
-//							flag = true;
-//							break;
-//						}
-//					}
-//					else if (loptica.getX() + loptica.getR() >= blokovi[i][j].getX()
-//							&& loptica.getX() <= blokovi[i][j].getX()
-//							&& loptica.getY() >= blokovi[i][j].getY() - loptica.getR()
-//							&& loptica.getY() <= blokovi[i][j].getY() + blokovi[i][j].getVisina() + loptica.getR())
-//					{
-//						if ((loptica.getUgaoKretanja() >= 0 && loptica.getUgaoKretanja() <= Math.PI / 2)
-//								|| (loptica.getUgaoKretanja() >= 3 * Math.PI / 2
-//										&& loptica.getUgaoKretanja() <= 2 * Math.PI))
-//						{
-//							if (loptica.getUgaoKretanja() >= 0 && loptica.getUgaoKretanja() <= Math.PI / 2)
-//								loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
-//							else
-//								loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
-//
-//							unistiBlok(i, j);
-//							flag = true;
-//							break;
-//						}
-//					}
-//					else if (loptica.getY() + loptica.getR() >= blokovi[i][j].getY()
-//							&& loptica.getY() <= blokovi[i][j].getY()
-//							&& loptica.getX() >= blokovi[i][j].getX() - loptica.getR()
-//							&& loptica.getX() <= blokovi[i][j].getX() + blokovi[i][j].getSirina() + loptica.getR())
-//					{
-//						if (loptica.getUgaoKretanja() >= Math.PI && loptica.getUgaoKretanja() <= 2 * Math.PI)
-//						{
-//							if (loptica.getUgaoKretanja() >= Math.PI && loptica.getUgaoKretanja() <= 3 * Math.PI / 2)
-//								loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
-//							else
-//								loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
-//
-//							unistiBlok(i, j);
-//							flag = true;
-//							break;
-//						}
-//					}
-//					else if (loptica.getY() - loptica.getR() <= blokovi[i][j].getY() + blokovi[i][j].getVisina()
-//							&& loptica.getY() >= blokovi[i][j].getY() + blokovi[i][j].getVisina()
-//							&& loptica.getX() >= blokovi[i][j].getX() - loptica.getR()
-//							&& loptica.getX() <= blokovi[i][j].getX() + blokovi[i][j].getSirina() + loptica.getR())
-//					{
-//						if (loptica.getUgaoKretanja() >= 0 && loptica.getUgaoKretanja() <= Math.PI)
-//						{
-//							if (loptica.getUgaoKretanja() >= Math.PI / 2 && loptica.getUgaoKretanja() <= Math.PI)
-//								loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
-//							else
-//								loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
-//
-//							unistiBlok(i, j);
-//							flag = true;
-//							break;
-//						}
-//					}
-//				}
-//			}
-//			if (flag) break;
-//		}
-//	}
-	
 	public void odbijLopticuOdBloka()
-    {
-        boolean flag=false;
-       
-        for(int i=0;i<20;i++)
-        {
-            for(int j=0;j<20;j++)
-            {
-                if(blokovi[i][j]!=null && !blokovi[i][j].isUnisten())
-                {
-                    if(loptica.getUgaoKretanja()>=0 && loptica.getUgaoKretanja()<=Math.PI/2)
-                    {
-                        if(loptica.getY()-loptica.getR()<=blokovi[i][j].getY()+blokovi[i][j].getVisina()
-                            && loptica.getX()+loptica.getR()>=blokovi[i][j].getX()
-                            && loptica.getX()-loptica.getR()<=blokovi[i][j].getX()
-                            && loptica.getY()+loptica.getR()>=blokovi[i][j].getY()+blokovi[i][j].getVisina())
-                        {
-                            if(blokovi[i][j].getX()-loptica.getX()>=loptica.getY()-blokovi[i][j].getY()-blokovi[i][j].getVisina())
-                                loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
-                            else
-                                loptica.setUgaoKretanja(2*Math.PI - loptica.getUgaoKretanja());
-                            unistiBlok(i, j);
-                            flag = true;
-                            break;
-                        }
-                        else if(loptica.getX()>=blokovi[i][j].getX() &&
-                                loptica.getX()-loptica.getR()<=blokovi[i][j].getX()+blokovi[i][j].getSirina() &&
-                                loptica.getY()-loptica.getR()<=blokovi[i][j].getY()+blokovi[i][j].getVisina() &&
-                                loptica.getY()+loptica.getR()>=blokovi[i][j].getY()+blokovi[i][j].getVisina())
-                        {
-                            loptica.setUgaoKretanja(2*Math.PI - loptica.getUgaoKretanja());
-                            unistiBlok(i, j);
-                            flag = true;
-                            break;
-                        }
-                        else if(loptica.getY()-loptica.getR()<=blokovi[i][j].getY()+blokovi[i][j].getVisina() &&
-                                loptica.getX()+loptica.getR()>=blokovi[i][j].getX() &&
-                                loptica.getX()-loptica.getR()<=blokovi[i][j].getX() &&
-                                loptica.getY()+loptica.getR()>=blokovi[i][j].getY())
-                        {
-                            loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
-                            unistiBlok(i, j);
-                            flag = true;
-                            break;
-                        }
-                           
-                    }
-                    else if(loptica.getUgaoKretanja()>=Math.PI/2 && loptica.getUgaoKretanja()<=Math.PI)
-                    {
-                        if(loptica.getY()-loptica.getR()<=blokovi[i][j].getY()+blokovi[i][j].getVisina()
-                                && loptica.getX()+loptica.getR()>=blokovi[i][j].getX()+blokovi[i][j].getSirina()
-                                && loptica.getX()-loptica.getR()<=blokovi[i][j].getX()+blokovi[i][j].getSirina()
-                                && loptica.getY()+loptica.getR()>=blokovi[i][j].getY()+blokovi[i][j].getVisina())
-                        {
-                            if(loptica.getX()-blokovi[i][j].getX()-blokovi[i][j].getSirina()>=loptica.getY()-blokovi[i][j].getY()-blokovi[i][j].getVisina())
-                                loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
-                            else
-                                loptica.setUgaoKretanja(2*Math.PI - loptica.getUgaoKretanja());
-                            unistiBlok(i, j);
-                            flag = true;
-                            break;
-                        }
-                        else if(loptica.getX()+loptica.getR()>=blokovi[i][j].getX() &&
-                                loptica.getX()+loptica.getR()<=blokovi[i][j].getX()+blokovi[i][j].getSirina() &&
-                                loptica.getY()-loptica.getR()<=blokovi[i][j].getY()+blokovi[i][j].getVisina() &&
-                                loptica.getY()+loptica.getR()>=blokovi[i][j].getY()+blokovi[i][j].getVisina())
-                        {
-                            loptica.setUgaoKretanja(2*Math.PI - loptica.getUgaoKretanja());
-                            unistiBlok(i, j);
-                            flag = true;
-                            break;
-                        }
-                        else if(loptica.getY()-loptica.getR()<=blokovi[i][j].getY()+blokovi[i][j].getVisina() &&
-                                loptica.getX()+loptica.getR()>=blokovi[i][j].getX()+blokovi[i][j].getSirina() &&
-                                loptica.getX()-loptica.getR()<=blokovi[i][j].getX()+blokovi[i][j].getSirina() &&
-                                loptica.getY()+loptica.getR()>=blokovi[i][j].getY())
-                        {
-                            loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
-                            unistiBlok(i, j);
-                            flag = true;
-                            break;
-                        }
-                    }
-                    else if(loptica.getUgaoKretanja()>=Math.PI && loptica.getUgaoKretanja()<=3*Math.PI/2)
-                    {
-                        if(loptica.getY()-loptica.getR()<=blokovi[i][j].getY()
-                                && loptica.getX()+loptica.getR()>=blokovi[i][j].getX()+blokovi[i][j].getSirina()
-                                && loptica.getX()-loptica.getR()<=blokovi[i][j].getX()+blokovi[i][j].getSirina()
-                                && loptica.getY()+loptica.getR()>=blokovi[i][j].getY())
-                        {
-                            if(loptica.getX()-blokovi[i][j].getX()+blokovi[i][j].getSirina()>=loptica.getY()-blokovi[i][j].getY())
-                                loptica.setUgaoKretanja(2*Math.PI - loptica.getUgaoKretanja());
-                            else
-                                loptica.setUgaoKretanja(3*Math.PI - loptica.getUgaoKretanja());
-                            unistiBlok(i, j);
-                            flag = true;
-                            break;
-                        }
-                        else if(loptica.getX()+loptica.getR()>=blokovi[i][j].getX() &&
-                                loptica.getX()+loptica.getR()<=blokovi[i][j].getX()+blokovi[i][j].getSirina() &&
-                                loptica.getY()-loptica.getR()<=blokovi[i][j].getY()&&
-                                loptica.getY()+loptica.getR()>=blokovi[i][j].getY())
-                        {
-                            loptica.setUgaoKretanja(2*Math.PI - loptica.getUgaoKretanja());
-                            unistiBlok(i, j);
-                            flag = true;
-                            break;
-                        }
-                        else if(loptica.getY()-loptica.getR()>=blokovi[i][j].getY()&&
-                                loptica.getX()+loptica.getR()>=blokovi[i][j].getX()+blokovi[i][j].getSirina() &&
-                                loptica.getX()-loptica.getR()<=blokovi[i][j].getX()+blokovi[i][j].getSirina() &&
-                                loptica.getY()-loptica.getR()<=blokovi[i][j].getY()+blokovi[i][j].getVisina())
-                        {
-                            loptica.setUgaoKretanja(3*Math.PI - loptica.getUgaoKretanja());
-                            unistiBlok(i, j);
-                            flag = true;
-                            break;
-                        }
-                    }
-                    else if(loptica.getUgaoKretanja()>=3*Math.PI/2 && loptica.getUgaoKretanja()<=2*Math.PI)
-                    {
-                        if(loptica.getY()-loptica.getR()<=blokovi[i][j].getY()
-                                && loptica.getX()+loptica.getR()>=blokovi[i][j].getX()
-                                && loptica.getX()-loptica.getR()<=blokovi[i][j].getX()
-                                && loptica.getY()+loptica.getR()>=blokovi[i][j].getY())
-                        {
-                            if(loptica.getX()-blokovi[i][j].getX()>=loptica.getY()-blokovi[i][j].getY())
-                                loptica.setUgaoKretanja(2*Math.PI - loptica.getUgaoKretanja());
-                            else
-                                loptica.setUgaoKretanja(3*Math.PI - loptica.getUgaoKretanja());
-                            unistiBlok(i, j);
-                            flag = true;
-                            break;
-                        }
-                        else if(loptica.getX()-loptica.getR()>=blokovi[i][j].getX() &&
-                                loptica.getX()-loptica.getR()<=blokovi[i][j].getX()+blokovi[i][j].getSirina() &&
-                                loptica.getY()-loptica.getR()<=blokovi[i][j].getY()&&
-                                loptica.getY()+loptica.getR()>=blokovi[i][j].getY())
-                        {
-                            loptica.setUgaoKretanja(2*Math.PI - loptica.getUgaoKretanja());
-                            unistiBlok(i, j);
-                            flag = true;
-                            break;
-                        }
-                        else if(loptica.getY()-loptica.getR()>=blokovi[i][j].getY()&&
-                                loptica.getX()+loptica.getR()>=blokovi[i][j].getX()&&
-                                loptica.getX()-loptica.getR()<=blokovi[i][j].getX()&&
-                                loptica.getY()-loptica.getR()<=blokovi[i][j].getY()+blokovi[i][j].getVisina())
-                        {
-                            loptica.setUgaoKretanja(3*Math.PI - loptica.getUgaoKretanja());
-                            unistiBlok(i, j);
-                            flag = true;
-                            break;
-                        }
-                    }
-                }
-            }
-            if(flag) break;
-        }
-    }
+	{
+		boolean flag = false;
+
+		for (int i = 0; i < 20; i++)
+		{
+			for (int j = 0; j < 20; j++)
+			{
+				if (blokovi[i][j] != null && !blokovi[i][j].isUnisten())
+				{
+					if (loptica.getUgaoKretanja() >= 0 && loptica.getUgaoKretanja() <= Math.PI / 2)
+					{
+						if (loptica.getY() - loptica.getR() <= blokovi[i][j].getY() + blokovi[i][j].getVisina()
+								&& loptica.getX() + loptica.getR() >= blokovi[i][j].getX()
+								&& loptica.getX() - loptica.getR() <= blokovi[i][j].getX()
+								&& loptica.getY() + loptica.getR() >= blokovi[i][j].getY() + blokovi[i][j].getVisina())
+						{
+							if (!(loptica instanceof ProbijajucaLoptica))
+							{
+								if (blokovi[i][j].getX() - loptica.getX() >= loptica.getY() - blokovi[i][j].getY()
+										- blokovi[i][j].getVisina())
+									loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
+								else
+									loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
+							}
+
+							loptica.unistiPolje(i, j, blokovi);
+							flag = true;
+							break;
+						}
+						else if (loptica.getX() >= blokovi[i][j].getX()
+								&& loptica.getX() - loptica.getR() <= blokovi[i][j].getX() + blokovi[i][j].getSirina()
+								&& loptica.getY() - loptica.getR() <= blokovi[i][j].getY() + blokovi[i][j].getVisina()
+								&& loptica.getY() + loptica.getR() >= blokovi[i][j].getY() + blokovi[i][j].getVisina())
+						{
+							if (!(loptica instanceof ProbijajucaLoptica))
+								loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
+
+							loptica.unistiPolje(i, j, blokovi);
+							flag = true;
+							break;
+						}
+						else if (loptica.getY() - loptica.getR() <= blokovi[i][j].getY() + blokovi[i][j].getVisina()
+								&& loptica.getX() + loptica.getR() >= blokovi[i][j].getX()
+								&& loptica.getX() - loptica.getR() <= blokovi[i][j].getX()
+								&& loptica.getY() + loptica.getR() >= blokovi[i][j].getY())
+						{
+							if (!(loptica instanceof ProbijajucaLoptica))
+								loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
+
+							loptica.unistiPolje(i, j, blokovi);
+							flag = true;
+							break;
+						}
+
+					}
+					else if (loptica.getUgaoKretanja() >= Math.PI / 2 && loptica.getUgaoKretanja() <= Math.PI)
+					{
+						if (loptica.getY() - loptica.getR() <= blokovi[i][j].getY() + blokovi[i][j].getVisina()
+								&& loptica.getX() + loptica.getR() >= blokovi[i][j].getX() + blokovi[i][j].getSirina()
+								&& loptica.getX() - loptica.getR() <= blokovi[i][j].getX() + blokovi[i][j].getSirina()
+								&& loptica.getY() + loptica.getR() >= blokovi[i][j].getY() + blokovi[i][j].getVisina())
+						{
+							if (!(loptica instanceof ProbijajucaLoptica))
+							{
+								if (loptica.getX() - blokovi[i][j].getX() - blokovi[i][j].getSirina() >= loptica.getY()
+										- blokovi[i][j].getY() - blokovi[i][j].getVisina())
+									loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
+								else
+									loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
+							}
+
+							loptica.unistiPolje(i, j, blokovi);
+							flag = true;
+							break;
+						}
+						else if (loptica.getX() + loptica.getR() >= blokovi[i][j].getX()
+								&& loptica.getX() + loptica.getR() <= blokovi[i][j].getX() + blokovi[i][j].getSirina()
+								&& loptica.getY() - loptica.getR() <= blokovi[i][j].getY() + blokovi[i][j].getVisina()
+								&& loptica.getY() + loptica.getR() >= blokovi[i][j].getY() + blokovi[i][j].getVisina())
+						{
+							if (!(loptica instanceof ProbijajucaLoptica))
+								loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
+
+							loptica.unistiPolje(i, j, blokovi);
+							flag = true;
+							break;
+						}
+						else if (loptica.getY() - loptica.getR() <= blokovi[i][j].getY() + blokovi[i][j].getVisina()
+								&& loptica.getX() + loptica.getR() >= blokovi[i][j].getX() + blokovi[i][j].getSirina()
+								&& loptica.getX() - loptica.getR() <= blokovi[i][j].getX() + blokovi[i][j].getSirina()
+								&& loptica.getY() + loptica.getR() >= blokovi[i][j].getY())
+						{
+							if (!(loptica instanceof ProbijajucaLoptica))
+								loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
+
+							loptica.unistiPolje(i, j, blokovi);
+							flag = true;
+							break;
+						}
+					}
+					else if (loptica.getUgaoKretanja() >= Math.PI && loptica.getUgaoKretanja() <= 3 * Math.PI / 2)
+					{
+						if (loptica.getY() - loptica.getR() <= blokovi[i][j].getY()
+								&& loptica.getX() + loptica.getR() >= blokovi[i][j].getX() + blokovi[i][j].getSirina()
+								&& loptica.getX() - loptica.getR() <= blokovi[i][j].getX() + blokovi[i][j].getSirina()
+								&& loptica.getY() + loptica.getR() >= blokovi[i][j].getY())
+						{
+							if (!(loptica instanceof ProbijajucaLoptica))
+							{
+								if (loptica.getX() - blokovi[i][j].getX() + blokovi[i][j].getSirina() >= loptica.getY()
+										- blokovi[i][j].getY())
+									loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
+								else
+									loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
+							}
+
+							loptica.unistiPolje(i, j, blokovi);
+							flag = true;
+							break;
+						}
+						else if (loptica.getX() + loptica.getR() >= blokovi[i][j].getX()
+								&& loptica.getX() + loptica.getR() <= blokovi[i][j].getX() + blokovi[i][j].getSirina()
+								&& loptica.getY() - loptica.getR() <= blokovi[i][j].getY()
+								&& loptica.getY() + loptica.getR() >= blokovi[i][j].getY())
+						{
+							if (!(loptica instanceof ProbijajucaLoptica))
+								loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
+
+							loptica.unistiPolje(i, j, blokovi);
+							flag = true;
+							break;
+						}
+						else if (loptica.getY() - loptica.getR() >= blokovi[i][j].getY()
+								&& loptica.getX() + loptica.getR() >= blokovi[i][j].getX() + blokovi[i][j].getSirina()
+								&& loptica.getX() - loptica.getR() <= blokovi[i][j].getX() + blokovi[i][j].getSirina()
+								&& loptica.getY() - loptica.getR() <= blokovi[i][j].getY() + blokovi[i][j].getVisina())
+						{
+							if (!(loptica instanceof ProbijajucaLoptica))
+								loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
+
+							loptica.unistiPolje(i, j, blokovi);
+							flag = true;
+							break;
+						}
+					}
+					else if (loptica.getUgaoKretanja() >= 3 * Math.PI / 2 && loptica.getUgaoKretanja() <= 2 * Math.PI)
+					{
+						if (loptica.getY() - loptica.getR() <= blokovi[i][j].getY()
+								&& loptica.getX() + loptica.getR() >= blokovi[i][j].getX()
+								&& loptica.getX() - loptica.getR() <= blokovi[i][j].getX()
+								&& loptica.getY() + loptica.getR() >= blokovi[i][j].getY())
+						{
+							if (!(loptica instanceof ProbijajucaLoptica))
+							{
+								if (loptica.getX() - blokovi[i][j].getX() >= loptica.getY() - blokovi[i][j].getY())
+									loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
+								else
+									loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
+							}
+
+							loptica.unistiPolje(i, j, blokovi);
+							flag = true;
+							break;
+						}
+						else if (loptica.getX() - loptica.getR() >= blokovi[i][j].getX()
+								&& loptica.getX() - loptica.getR() <= blokovi[i][j].getX() + blokovi[i][j].getSirina()
+								&& loptica.getY() - loptica.getR() <= blokovi[i][j].getY()
+								&& loptica.getY() + loptica.getR() >= blokovi[i][j].getY())
+						{
+							if (!(loptica instanceof ProbijajucaLoptica))
+								loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
+
+							loptica.unistiPolje(i, j, blokovi);
+							flag = true;
+							break;
+						}
+						else if (loptica.getY() - loptica.getR() >= blokovi[i][j].getY()
+								&& loptica.getX() + loptica.getR() >= blokovi[i][j].getX()
+								&& loptica.getX() - loptica.getR() <= blokovi[i][j].getX()
+								&& loptica.getY() - loptica.getR() <= blokovi[i][j].getY() + blokovi[i][j].getVisina())
+						{
+							if (!(loptica instanceof ProbijajucaLoptica))
+								loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
+
+							loptica.unistiPolje(i, j, blokovi);
+							flag = true;
+							break;
+						}
+					}
+				}
+			}
+			if (flag) break;
+		}
+	}
 
 	public void pomeriLopticu(double duzina)
 	{
@@ -637,7 +579,7 @@ public class Engine
 		odbijLopticuOdZida();
 	}
 
-	public boolean prihvatiIznenadjenje()
+	public Iznenadjenje prihvatiIznenadjenje()
 	{
 		for (int i = 0; i < iznenadjenja.length; i++)
 			if (iznenadjenja[i] != null && iznenadjenja[i].isVidljivo())
@@ -647,18 +589,13 @@ public class Engine
 						&& iznenadjenja[i].getX() + iznenadjenja[i].getSirina() >= daska.getX()
 						&& iznenadjenja[i].getX() <= daska.getX() + daska.getSirina())
 				{
-					boolean flag = false;
-					
-					if (iznenadjenja[i] instanceof ProduzenjeDaske || iznenadjenja[i] instanceof SkracenjeDaske)
-						flag = true;
-					
 					iznenadjenja[i].primeniIznenadjenje();
-					iznenadjenja[i] = null;
-					if (flag) return true;
+					iznenadjenja[i].setVidljivo(false);
+					return iznenadjenja[i];
 				}
 			}
 		
-		return false;
+		return null;
 	}
 
 	public void predjiNivo()
@@ -667,21 +604,20 @@ public class Engine
 
 		for (int i = 0; i < 20; i++)
 			for (int j = 0; j < 20; j++)
-				if (blokovi[i][j] != null && !blokovi[i][j].isUnisten() && !(blokovi[i][j] instanceof NeprobojniBlok)) 
+				if (blokovi[i][j] != null && !blokovi[i][j].isUnisten() && !(blokovi[i][j] instanceof NeprobojniBlok))
 					flag = false;
 
-		if (flag) 
+		if (flag)
 		{
 			nivo++;
 			postaviNivo();
 		}
-	} 
+	}
 
 	public boolean isKraj()
 	{
-		if (brojZivota == 0)
-			kraj = true;
-		
+		if (brojZivota == 0) kraj = true;
+
 		return kraj;
 	}
 
@@ -745,4 +681,33 @@ public class Engine
 		return iznenadjenja;
 	}
 
+	public boolean isPomeranjeLopticeSaDaskom()
+	{
+		return pomeranjeLopticeSaDaskom;
+	}
+
+	public void setPomeranjeLopticeSaDaskom(boolean pomeranjeLopticeSaDaskom)
+	{
+		this.pomeranjeLopticeSaDaskom = pomeranjeLopticeSaDaskom;
+	}
+
+	public static int getMaxsirina()
+	{
+		return maxSirina;
+	}
+
+	public static int getMaxvisina()
+	{
+		return maxVisina;
+	}
+
+	public static int getMinsirina()
+	{
+		return minSirina;
+	}
+
+	public static int getMinvisina()
+	{
+		return minVisina;
+	}
 }
