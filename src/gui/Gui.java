@@ -31,8 +31,8 @@ public class Gui extends JFrame
 	private JPanel loptica;
 	private JPanel daska;
 	private JLayeredPane glavniPanel;
-	private Timer timerLoptica;
-	private Timer timerIznenadjenje;
+	private Timer timer;
+//	private Timer timerIznenadjenje;
 	private JPanel panelLevo;
 	private JPanel panelDesno;
 	private JLabel zivoti;
@@ -73,8 +73,8 @@ public class Gui extends JFrame
 		postaviDeloveIgre();
 		mouseListener();
 		osveziGuiBlokovi();
-		dodajTimerLoptica();
-		dodajTimerIznenadjenje();
+		dodajTimer();
+//	dodajTimerIznenadjenje();
 
 	}
 
@@ -179,7 +179,8 @@ public class Gui extends JFrame
 			@Override
 			public void mouseReleased(MouseEvent e)
 			{
-				timerLoptica.start();
+				
+				timer.start();
 			}
 
 			@Override
@@ -213,9 +214,9 @@ public class Gui extends JFrame
 
 	}
 
-	private void dodajTimerLoptica()
+	private void dodajTimer()
 	{
-		timerLoptica = new Timer(engine.getLoptica().getBrzinaLoptice(), new ActionListener()
+		timer = new Timer(engine.getLoptica().getBrzinaLoptice(), new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
@@ -223,7 +224,7 @@ public class Gui extends JFrame
 
 				if (engine.isKraj())
 				{
-					timerLoptica.stop();
+					timer.stop();
 					JOptionPane.showMessageDialog(null, "Izgubili ste!");
 				}
 
@@ -239,32 +240,32 @@ public class Gui extends JFrame
 			}
 		});
 	}
-
-	private void dodajTimerIznenadjenje()
-	{
-		timerIznenadjenje = new Timer(50, new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				boolean primljenaDaska = false;
-
-				osveziGuiIznenadjenja();
-				primljenaDaska = engine.prihvatiIznenadjenje();
-				timerLoptica.setDelay(engine.getLoptica().getBrzinaLoptice());
-				zivoti.setText("BROJ ZIVOTA: " + engine.getBrojZivota());
-
-				if (primljenaDaska)
-				{
-					daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
-							engine.getDaska().getVisina());
-					ocistiPanelIDodajSliku(daska, "/Daska" + engine.getDaska().getSirina() + ".png");
-				}
-
-			}
-		});
-
-		timerIznenadjenje.start();
-	}
+//
+//	private void dodajTimerIznenadjenje()
+//	{
+//		timerIznenadjenje = new Timer(50, new ActionListener()
+//		{
+//			public void actionPerformed(ActionEvent e)
+//			{
+//				boolean primljenaDaska = false;
+//
+//				osveziGuiIznenadjenja();
+//				primljenaDaska = engine.prihvatiIznenadjenje();
+//				timerLoptica.setDelay(engine.getLoptica().getBrzinaLoptice());
+//				zivoti.setText("BROJ ZIVOTA: " + engine.getBrojZivota());
+//
+//				if (primljenaDaska)
+//				{
+//					daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
+//							engine.getDaska().getVisina());
+//					ocistiPanelIDodajSliku(daska, "/Daska" + engine.getDaska().getSirina() + ".png");
+//				}
+//
+//			}
+//		});
+//
+//		timerIznenadjenje.start();
+//	}
 
 	public void ocistiPanelIDodajSliku(JPanel panel, String image)
 	{
@@ -286,30 +287,30 @@ public class Gui extends JFrame
 					ocistiPanelIDodajSliku(blokovi[i][j], engine.getBlok(i, j).getPocetnaSlika());
 
 	}
-
-	private void osveziGuiIznenadjenja()
-	{
-		// PRIKAZI IZNENADJENJA
-		Iznenadjenje[] izn = engine.getIznenadjenja();
-
-		for (int i = 0; i < 6; i++)
-		{
-			if (izn[i] != null)
-			{
-				if (izn[i].isVidljivo())
-				{
-					iznenadjenja[i].setVisible(true);
-					iznenadjenja[i].setBounds(izn[i].getX(), izn[i].getY(), izn[i].getSirina(), izn[i].getVisina());
-					ocistiPanelIDodajSliku(iznenadjenja[i], izn[i].getSlika());
-					izn[i].spustiSe();
-				}
-			}
-			else
-			{
-				iznenadjenja[i].setVisible(false);
-			}
-
-		}
-	}
+//
+//	private void osveziGuiIznenadjenja()
+//	{
+//		// PRIKAZI IZNENADJENJA
+//		Iznenadjenje[] izn = engine.getIznenadjenja();
+//
+//		for (int i = 0; i < 6; i++)
+//		{
+//			if (izn[i] != null)
+//			{
+//				if (izn[i].isVidljivo())
+//				{
+//					iznenadjenja[i].setVisible(true);
+//					iznenadjenja[i].setBounds(izn[i].getX(), izn[i].getY(), izn[i].getSirina(), izn[i].getVisina());
+//					ocistiPanelIDodajSliku(iznenadjenja[i], izn[i].getSlika());
+//					izn[i].spustiSe();
+//				}
+//			}
+//			else
+//			{
+//				iznenadjenja[i].setVisible(false);
+//			}
+//
+//		}
+//	}
 
 }
