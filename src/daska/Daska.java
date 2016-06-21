@@ -60,16 +60,23 @@ public class Daska
 
 	public void pomeriSe()
 	{
-		this.x = MouseInfo.getPointerInfo().getLocation().x - sirina / 2;
+		int p = MouseInfo.getPointerInfo().getLocation().x - 183 - sirina / 2;
+		
+		if (p < 0)
+			this.x = 0;
+		else if (p + sirina > 1000)
+			this.x = 1000 - sirina;
+		else
+			this.x = p;
 	}
 
 	public void produziSe()
 	{
-		this.duzina *= 2;
+		this.sirina *= 2;
 	}
 
 	public void skratiSe()
 	{
-		this.duzina /= 2;
+		this.sirina /= 2;
 	}
 }
