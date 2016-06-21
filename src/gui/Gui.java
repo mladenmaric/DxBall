@@ -100,6 +100,7 @@ public class Gui extends JFrame
 
 		// IZNENADJENJA
 		iznenadjenja = new JPanel[6];
+		Iznenadjenje[] izn = engine.getIznenadjenja();
 
 		for (int i = 0; i < 6; i++)
 		{
@@ -107,6 +108,7 @@ public class Gui extends JFrame
 			iznenadjenja[i].setSize(50, 50);
 			iznenadjenja[i].setOpaque(true);
 			iznenadjenja[i].setVisible(false);
+			ocistiPanelIDodajSliku(iznenadjenja[i], izn[i].getSlika());
 
 			FlowLayout f = (FlowLayout) iznenadjenja[i].getLayout();
 			f.setHgap(0);
