@@ -1,13 +1,35 @@
 package loptica;
 
-public class Loptica
+import blok.Blok;
+
+public abstract class Loptica
 {
 	private int x;
 	private int y;
 	private int r;
 	private double ugaoKretanja;
-	private TipLoptice tipLoptice;
 	private int brzinaLoptice;
+	private String slika;
+
+	public Loptica(int x, int y, int r, double ugaoKretanja, int brzinaLoptice, String slika)
+	{
+		this.x = x;
+		this.y = y;
+		this.r = r;
+		this.ugaoKretanja = ugaoKretanja;
+		this.brzinaLoptice = brzinaLoptice;
+		this.slika = slika;
+	}
+	
+	public Loptica(Loptica loptica, String slika)
+	{
+		this.x = loptica.getX();
+		this.y = loptica.getY();
+		this.r = loptica.getR();
+		this.ugaoKretanja = loptica.ugaoKretanja;
+		this.brzinaLoptice = loptica.brzinaLoptice;
+		this.slika = slika;
+	}
 
 	public int getX()
 	{
@@ -49,16 +71,6 @@ public class Loptica
 		this.ugaoKretanja = ugaoKretanja;
 	}
 
-	public TipLoptice getTipLoptice()
-	{
-		return tipLoptice;
-	}
-
-	public void setTipLoptice(TipLoptice tipLoptice)
-	{
-		this.tipLoptice = tipLoptice;
-	}
-
 	public int getBrzinaLoptice()
 	{
 		return brzinaLoptice;
@@ -78,4 +90,11 @@ public class Loptica
 	{
 		brzinaLoptice *= 2;
 	}
+
+	public String getSlika()
+	{
+		return slika;
+	}
+
+	public abstract void unistiPolje(int i, int j, Blok[][] blokovi);
 }
