@@ -36,6 +36,24 @@ public class Engine
 	{
 		init();
 	}
+	
+	public void postaviPocetneVrednosti()
+	{
+		for (int i = 0; i < 20; i++)
+			for (int j = 0; j < 20; j++)
+				blokovi[i][j] = null;
+		
+		daska.setVisina(20);
+		daska.setSirina(100);
+		daska.setX(450);
+		daska.setY(700);
+		loptica.setX(500);
+		loptica.setY(690);
+		loptica.setUgaoKretanja(Math.PI/2);
+		loptica.setTipLoptice(TipLoptice.NORMALNA);
+		loptica.setBrzinaLoptice(15);
+		loptica.setR(7);
+	}
 
 	public void init()
 	{
@@ -44,19 +62,17 @@ public class Engine
 		kraj = false;
 		
 		blokovi = new Blok[20][20];
-		daska = new Daska(450, 700, 100, 20);
-		loptica = new Loptica(500, 690, 7, Math.PI / 2, TipLoptice.NORMALNA, 15);
+		daska = new Daska();
+		loptica = new Loptica();
 		iznenadjenja = new Iznenadjenje[6];
 		
 		postaviNivo();
 	}
 
 	public void postaviNivo()
-	{
-		for (int i = 0; i < 20; i++)
-			for (int j = 0; j < 20; j++)
-				blokovi[i][j] = null;
-
+	{	
+		postaviPocetneVrednosti();
+		
 		if (nivo == 1)
 			postaviNivo1();
 		else if (nivo == 2)
@@ -501,7 +517,7 @@ public class Engine
                                 && loptica.getX()-loptica.getR()<=blokovi[i][j].getX()+blokovi[i][j].getSirina()
                                 && loptica.getY()+loptica.getR()>=blokovi[i][j].getY()+blokovi[i][j].getVisina())
                         {
-                            if(loptica.getX()-blokovi[i][j].getX()+blokovi[i][j].getSirina()>=loptica.getY()-blokovi[i][j].getY()-blokovi[i][j].getVisina())
+                            if(loptica.getX()-blokovi[i][j].getX()-blokovi[i][j].getSirina()>=loptica.getY()-blokovi[i][j].getY()-blokovi[i][j].getVisina())
                                 loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
                             else
                                 loptica.setUgaoKretanja(2*Math.PI - loptica.getUgaoKretanja());

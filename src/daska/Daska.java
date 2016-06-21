@@ -7,16 +7,7 @@ public class Daska
 	private int x;
 	private int y;
 	private int sirina;
-	private int duzina;
-
-	public Daska(int x, int y, int sirina, int duzina)
-	{
-		super();
-		this.x = x;
-		this.y = y;
-		this.sirina = sirina;
-		this.duzina = duzina;
-	}
+	private int visina;
 
 	public int getX()
 	{
@@ -48,14 +39,14 @@ public class Daska
 		this.sirina = sirina;
 	}
 
-	public int getDuzina()
+	public int getVisina()
 	{
-		return duzina;
+		return visina;
 	}
 
-	public void setDuzina(int duzina)
+	public void setVisina(int visina)
 	{
-		this.duzina = duzina;
+		this.visina = visina;
 	}
 
 	public void pomeriSe()

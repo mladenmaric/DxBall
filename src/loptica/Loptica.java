@@ -9,17 +9,6 @@ public class Loptica
 	private TipLoptice tipLoptice;
 	private int brzinaLoptice;
 
-	public Loptica(int x, int y, int r, double ugaoKretanja, TipLoptice tipLoptice, int brzinaLoptice)
-	{
-		super();
-		this.x = x;
-		this.y = y;
-		this.r = r;
-		this.ugaoKretanja = ugaoKretanja;
-		this.tipLoptice = tipLoptice;
-		this.brzinaLoptice = brzinaLoptice;
-	}
-
 	public int getX()
 	{
 		return x;
