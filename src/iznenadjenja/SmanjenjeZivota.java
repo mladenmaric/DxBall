@@ -5,9 +5,9 @@ import engine.Engine;
 public class SmanjenjeZivota extends Iznenadjenje
 {
 
-	public SmanjenjeZivota(Engine engine, int sirina, int visina)
+	public SmanjenjeZivota(Engine engine)
 	{
-		super(engine, sirina, visina, "/SmanjenjeZivota.png");
+		super(engine, "/SmanjenjeZivota.png");
 	}
 
 	public void primeniIznenadjenje()

@@ -3,14 +3,18 @@ package blok;
 public class NormalanBlok extends Blok
 {
 
-	public NormalanBlok(int x, int y, int sirina, int visina, BojaBloka boja, String pocetnaSlika)
+	public NormalanBlok(int i, int j, String pocetnaSlika)
 	{
-		super(x, y, sirina, visina, boja, pocetnaSlika);
+		super(i, j, pocetnaSlika);
 	}
 
-	public void unistiSe(int i, int j, Blok[][] blokovi)
+	public void unistiSe(Blok[][] blokovi)
 	{
+		int i = getI();
+		int j = getJ();
+		
 		blokovi[i][j].setUnisten(true);
+		
 		if (getIznenadjenje() != null)
 			getIznenadjenje().setVidljivo(true);
 	}

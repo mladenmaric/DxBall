@@ -3,15 +3,17 @@ package blok;
 public class OkovaniBlok extends Blok
 {
 	
-	public OkovaniBlok(int x, int y, int sirina, int visina, BojaBloka boja, String pocetnaSlika)
+	public OkovaniBlok(int i, int j)
 	{
-		super(x, y, sirina, visina, boja, pocetnaSlika);
+		super(i, j, "/OkovaniBlok.png");
 	}
 
-	public void unistiSe(int i, int j, Blok[][] blokovi)
+	public void unistiSe(Blok[][] blokovi)
 	{
-		blokovi[i][j] = new NeprobojniBlok(super.getX(), super.getY(), super.getSirina(), super.getVisina(), super.getBoja(), "/NEPROBOJNI.png");
-
+		int i = getI();
+		int j = getJ();
+		
+		blokovi[i][j] = new NeprobojniBlok(super.getI(), super.getJ());
 	}
 
 }

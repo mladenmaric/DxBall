@@ -7,18 +7,16 @@ public abstract class Iznenadjenje
 	private Engine engine;
 	private int x;
 	private int y;
-	private int sirina;
-	private int visina;
+	private static final int sirina = 50;
+	private static final int visina = 50;
 	private boolean vidljivo;
 	private String slika;
 
-	public Iznenadjenje(Engine engine, int sirina, int visina, String slika)
+	public Iznenadjenje(Engine engine, String slika)
 	{
-		super();
 		this.engine = engine;
-		this.sirina = sirina;
-		this.visina = visina;
 		this.slika = slika;
+		
 		vidljivo = false;
 	}
 
@@ -64,19 +62,9 @@ public abstract class Iznenadjenje
 		return sirina;
 	}
 
-	public void setSirina(int sirina)
-	{
-		this.sirina = sirina;
-	}
-
 	public int getVisina()
 	{
 		return visina;
-	}
-
-	public void setVisina(int visina)
-	{
-		this.visina = visina;
 	}
 
 	public boolean isVidljivo()
@@ -93,4 +81,11 @@ public abstract class Iznenadjenje
 	{
 		return slika;
 	}
+
+	public void setSlika(String slika)
+	{
+		this.slika = slika;
+	}
+	
+	
 }

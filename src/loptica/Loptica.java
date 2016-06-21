@@ -82,11 +82,11 @@ public class Loptica
 
 	public void ubrzajSe()
 	{
-		brzinaLoptice *= 2;
+		brzinaLoptice /= 2;
 	}
 
 	public void usporiSe()
 	{
-		brzinaLoptice /= 2;
+		brzinaLoptice *= 2;
 	}
 }

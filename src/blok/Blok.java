@@ -4,25 +4,36 @@ import iznenadjenja.Iznenadjenje;
 
 public abstract class Blok
 {
+	private int i;
+	private int j;
 	private int x; // GORE_LEVO (X)
 	private int y; // GORE_LEVO (Y)
-	private int sirina;
-	private int visina;
-	private BojaBloka boja;
+	private static final int sirina = 50;
+	private static final int visina = 25;
 	private String pocetnaSlika;
 	private boolean unisten;
 	private Iznenadjenje iznenadjenje;
 
-	public Blok(int x, int y, int sirina, int visina, BojaBloka boja, String pocetnaSlika)
+	public Blok(int i, int j, String pocetnaSlika)
 	{
-		this.x = x;
-		this.y = y;
-		this.sirina = sirina;
-		this.visina = visina;
-		this.boja = boja;
+		this.i = i;
+		this.j = j;
 		this.pocetnaSlika = pocetnaSlika;
+		
+		x = 50 * j;
+		y = 25 * i;
 		unisten = false;
 		iznenadjenje = null;
+	}
+
+	public int getI()
+	{
+		return i;
+	}
+
+	public int getJ()
+	{
+		return j;
 	}
 
 	public int getX()
@@ -30,19 +41,9 @@ public abstract class Blok
 		return x;
 	}
 
-	public void setX(int x)
-	{
-		this.x = x;
-	}
-
 	public int getY()
 	{
 		return y;
-	}
-
-	public void setY(int y)
-	{
-		this.y = y;
 	}
 
 	public int getSirina()
@@ -50,29 +51,9 @@ public abstract class Blok
 		return sirina;
 	}
 
-	public void setSirina(int sirina)
-	{
-		this.sirina = sirina;
-	}
-
 	public int getVisina()
 	{
 		return visina;
-	}
-
-	public void setVisina(int visina)
-	{
-		this.visina = visina;
-	}
-
-	public BojaBloka getBoja()
-	{
-		return boja;
-	}
-
-	public void setBoja(BojaBloka boja)
-	{
-		this.boja = boja;
 	}
 
 	public String getPocetnaSlika()
@@ -104,12 +85,7 @@ public abstract class Blok
 	{
 		this.iznenadjenje = iznenadjenje;
 	}
-	
-	public void pustiIznenadjenje()
-	{
-		
-	}
 
-	public abstract void unistiSe(int i, int j, Blok[][] blokovi);
+	public abstract void unistiSe(Blok[][] blokovi);
 
 }
