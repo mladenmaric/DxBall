@@ -100,6 +100,7 @@ public class Gui extends JFrame
 
 		// IZNENADJENJA
 		iznenadjenja = new JPanel[6];
+		Iznenadjenje[] izn = engine.getIznenadjenja();
 
 		for (int i = 0; i < 6; i++)
 		{
@@ -107,6 +108,7 @@ public class Gui extends JFrame
 			iznenadjenja[i].setSize(50, 50);
 			iznenadjenja[i].setOpaque(true);
 			iznenadjenja[i].setVisible(false);
+			ocistiPanelIDodajSliku(iznenadjenja[i], izn[i].getSlika());
 
 			FlowLayout f = (FlowLayout) iznenadjenja[i].getLayout();
 			f.setHgap(0);
@@ -123,7 +125,7 @@ public class Gui extends JFrame
 		g.setVgap(0);
 
 		daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
-				engine.getDaska().getDuzina());
+				engine.getDaska().getVisina());
 		daska.setOpaque(true);
 		ocistiPanelIDodajSliku(daska, "/Daska100.png");
 		glavniPanel.add(daska, 0);
@@ -162,7 +164,7 @@ public class Gui extends JFrame
 			{
 				engine.getDaska().pomeriSe();
 				daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
-						engine.getDaska().getDuzina());
+						engine.getDaska().getVisina());
 			}
 
 			@Override
@@ -254,7 +256,7 @@ public class Gui extends JFrame
 				if (primljenaDaska)
 				{
 					daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
-							engine.getDaska().getDuzina());
+							engine.getDaska().getVisina());
 					ocistiPanelIDodajSliku(daska, "/Daska" + engine.getDaska().getSirina() + ".png");
 				}
 
