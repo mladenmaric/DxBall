@@ -217,8 +217,7 @@ public class Gui extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				for (int i = 0; i < 5; i++)
-					engine.pomeriLopticu(2);
+				engine.pomeriLopticu(5);
 
 				if (engine.isKraj())
 				{
