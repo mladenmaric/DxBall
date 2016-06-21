@@ -123,7 +123,7 @@ public class Gui extends JFrame
 		g.setVgap(0);
 
 		daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
-				engine.getDaska().getDuzina());
+				engine.getDaska().getVisina());
 		daska.setOpaque(true);
 		ocistiPanelIDodajSliku(daska, "/Daska100.png");
 		glavniPanel.add(daska, 0);
@@ -162,7 +162,7 @@ public class Gui extends JFrame
 			{
 				engine.getDaska().pomeriSe();
 				daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
-						engine.getDaska().getDuzina());
+						engine.getDaska().getVisina());
 			}
 
 			@Override
@@ -254,7 +254,7 @@ public class Gui extends JFrame
 				if (primljenaDaska)
 				{
 					daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
-							engine.getDaska().getDuzina());
+							engine.getDaska().getVisina());
 					ocistiPanelIDodajSliku(daska, "/Daska" + engine.getDaska().getSirina() + ".png");
 				}
 
