@@ -67,7 +67,7 @@ public class Gui extends JFrame
 		glavniPanel.setBounds(183, 0, 1000, 741);
 		contentPane.add(glavniPanel);
 
-		panelLevo = new JPanel(null);
+		panelLevo = new JPanel();
 		panelLevo.setBackground(Color.WHITE);
 		panelLevo.setBounds(0, 0, 183, 741);
 		contentPane.add(panelLevo);
@@ -260,31 +260,33 @@ public class Gui extends JFrame
 
 				if (engine.isKraj())
 				{
-//					timerLoptica.stop();
-//					
-//					osveziGuiBlokovi();
-//					osveziGuiIznenadjenja();
-//					
-//					engine.postaviPocetneVrednosti();
-//					
-//					daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
-//							engine.getDaska().getVisina());
-//					ocistiPanelIDodajSliku(daska, "/Daska" + engine.getDaska().getSirina() + ".png");
-//					
-//					engine.getLoptica().setX(engine.getDaska().getX() + engine.getDaska().getSirina() / 2);	
-//					
-//					int x = engine.getLoptica().getX() - engine.getLoptica().getR();
-//					int y = engine.getLoptica().getY() - engine.getLoptica().getR();
-//					int precnik = engine.getLoptica().getR() * 2;
-//
-//					loptica.setBounds(x, y, precnik, precnik);
-//					ocistiPanelIDodajSliku(loptica, engine.getLoptica().getSlika());
-//					
-	
+					timerLoptica.stop();
+					
+					engine.setKraj(false);
+					
+					osveziGuiBlokovi();
+					osveziGuiIznenadjenja();
+					
+					engine.postaviPocetneVrednosti();
+					
+					daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
+							engine.getDaska().getVisina());
+					ocistiPanelIDodajSliku(daska, "/Daska" + engine.getDaska().getSirina() + ".png");
+					
+					engine.getLoptica().setX(engine.getDaska().getX() + engine.getDaska().getSirina() / 2);	
+					
+					int x = engine.getLoptica().getX() - engine.getLoptica().getR();
+					int y = engine.getLoptica().getY() - engine.getLoptica().getR();
+					int precnik = engine.getLoptica().getR() * 2;
+
+					loptica.setBounds(x, y, precnik, precnik);
+					ocistiPanelIDodajSliku(loptica, engine.getLoptica().getSlika());
+					
 					
 					if (engine.getBrojZivota() == 0)
 					{
 						JOptionPane.showMessageDialog(null, "Izgubili ste!");
+						System.exit(0);
 					}
 
 				}
@@ -384,6 +386,8 @@ public class Gui extends JFrame
 					ocistiPanelIDodajSliku(blokovi[i][j], null);
 				else
 					ocistiPanelIDodajSliku(blokovi[i][j], engine.getBlok(i, j).getPocetnaSlika());
+		
+		zivoti.setText("BROJ ZIVOTA: " + engine.getBrojZivota());
 
 	}
 
