@@ -33,28 +33,11 @@ public class Engine
 	private boolean kraj;
 	private int nivo;
 	private int brojZivota;
-	private Iznenadjenje[] iznenadjenja;
 	private boolean pomeranjeLopticeSaDaskom;
 
 	public Engine()
 	{
 		init();
-	}
-
-	public void postaviPocetneVrednosti()
-	{
-		daska.setVisina(20);
-		daska.setSirina(100);
-		daska.setX(450);
-		daska.setY(700);
-
-		int r = 7;
-		int x = daska.getX() + daska.getSirina() / 2;
-		int y = daska.getY() - r;
-
-		loptica = new NormalnaLoptica(x, y, 7, Math.PI / 2, 15);
-
-		pomeranjeLopticeSaDaskom = true;
 	}
 
 	public void init()
@@ -65,16 +48,6 @@ public class Engine
 
 		blokovi = new Blok[20][20];
 		daska = new Daska();
-		iznenadjenja = new Iznenadjenje[8];
-		
-		iznenadjenja[0] = new BonusZivot(this);
-		iznenadjenja[1] = new ProduzenjeDaske(this);
-		iznenadjenja[2] = new SkracenjeDaske(this);
-		iznenadjenja[3] = new UbrzanjeLoptice(this);
-		iznenadjenja[4] = new SmanjenjeZivota(this);
-		iznenadjenja[5] = new UsporenjeLoptice(this);
-		iznenadjenja[6] = new VatrenostLoptice(this);
-		iznenadjenja[7] = new ProbojnostLoptice(this);
 
 		postaviNivo();
 	}
@@ -95,10 +68,25 @@ public class Engine
 			postaviNivo3();
 		else if (nivo == 4)
 			postaviNivo4();
-		else if (nivo == 5)
-			postaviNivo5();
-		
+		else if (nivo == 5) postaviNivo5();
+
 		postaviIznenadjenja();
+	}
+
+	public void postaviPocetneVrednosti()
+	{
+		daska.setVisina(20);
+		daska.setSirina(100);
+		daska.setX(450);
+		daska.setY(700);
+
+		int r = 7;
+		int x = daska.getX() + daska.getSirina() / 2;
+		int y = daska.getY() - r;
+
+		loptica = new NormalnaLoptica(x, y, 7, Math.PI / 2, 15);
+
+		pomeranjeLopticeSaDaskom = true;
 	}
 
 	private void postaviIznenadjenja()
@@ -106,18 +94,69 @@ public class Engine
 		Random r = new Random();
 		int br = 0;
 
-		while (br < 4)
+		while (br < nivo + 3)
 		{
 			int i = r.nextInt(20);
 			int j = r.nextInt(20);
-			int br2=r.nextInt(8);
+			int br2 = r.nextInt(8);
 
 			if (blokovi[i][j] != null && blokovi[i][j].getIznenadjenje() == null
 					&& !(blokovi[i][j] instanceof NeprobojniBlok))
 			{
-				iznenadjenja[br2].setX(blokovi[i][j].getX());
-				iznenadjenja[br2].setY(blokovi[i][j].getY());
-				blokovi[i][j].setIznenadjenje(iznenadjenja[br2]);
+				switch (br2)
+				{
+				case 0:
+					blokovi[i][j].setIznenadjenje(new BonusZivot(this));
+					blokovi[i][j].getIznenadjenje().setX(blokovi[i][j].getX());
+					blokovi[i][j].getIznenadjenje().setY(blokovi[i][j].getY());
+					break;
+
+				case 1:
+					blokovi[i][j].setIznenadjenje(new ProbojnostLoptice(this));
+					blokovi[i][j].getIznenadjenje().setX(blokovi[i][j].getX());
+					blokovi[i][j].getIznenadjenje().setY(blokovi[i][j].getY());
+					break;
+
+				case 2:
+					blokovi[i][j].setIznenadjenje(new ProduzenjeDaske(this));
+					blokovi[i][j].getIznenadjenje().setX(blokovi[i][j].getX());
+					blokovi[i][j].getIznenadjenje().setY(blokovi[i][j].getY());
+					break;
+
+				case 3:
+					blokovi[i][j].setIznenadjenje(new SkracenjeDaske(this));
+					blokovi[i][j].getIznenadjenje().setX(blokovi[i][j].getX());
+					blokovi[i][j].getIznenadjenje().setY(blokovi[i][j].getY());
+					break;
+
+				case 4:
+					blokovi[i][j].setIznenadjenje(new SmanjenjeZivota(this));
+					blokovi[i][j].getIznenadjenje().setX(blokovi[i][j].getX());
+					blokovi[i][j].getIznenadjenje().setY(blokovi[i][j].getY());
+					break;
+
+				case 5:
+					blokovi[i][j].setIznenadjenje(new UbrzanjeLoptice(this));
+					blokovi[i][j].getIznenadjenje().setX(blokovi[i][j].getX());
+					blokovi[i][j].getIznenadjenje().setY(blokovi[i][j].getY());
+					break;
+
+				case 6:
+					blokovi[i][j].setIznenadjenje(new UsporenjeLoptice(this));
+					blokovi[i][j].getIznenadjenje().setX(blokovi[i][j].getX());
+					blokovi[i][j].getIznenadjenje().setY(blokovi[i][j].getY());
+					break;
+
+				case 7:
+					blokovi[i][j].setIznenadjenje(new VatrenostLoptice(this));
+					blokovi[i][j].getIznenadjenje().setX(blokovi[i][j].getX());
+					blokovi[i][j].getIznenadjenje().setY(blokovi[i][j].getY());
+					break;
+
+				default:
+					break;
+				}
+
 				br++;
 			}
 		}
@@ -312,7 +351,7 @@ public class Engine
 
 	private void postaviNivo3()
 	{
-		
+
 	}
 
 	private void postaviNivo4()
@@ -324,7 +363,7 @@ public class Engine
 	{
 
 	}
-	
+
 	public void odbijLopticuOdZida()
 	{
 		if (loptica.getX() - loptica.getR() <= minSirina)
@@ -344,6 +383,7 @@ public class Engine
 		}
 		else if (loptica.getY() + loptica.getR() >= maxVisina)
 		{
+			brojZivota--;
 			kraj = true;
 		}
 		else if (loptica.getY() - loptica.getR() <= minVisina)
@@ -480,8 +520,8 @@ public class Engine
 						{
 							if (!(loptica instanceof ProbijajucaLoptica))
 							{
-								if (loptica.getX() - blokovi[i][j].getX() + blokovi[i][j].getSirina() >= loptica.getY()
-										- blokovi[i][j].getY())
+								if (loptica.getX() - blokovi[i][j].getX()
+										- blokovi[i][j].getSirina() >= blokovi[i][j].getY() - loptica.getY())
 									loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
 								else
 									loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
@@ -581,24 +621,31 @@ public class Engine
 
 	public Iznenadjenje prihvatiIznenadjenje()
 	{
-		for (int i = 0; i < iznenadjenja.length; i++)
-			if (iznenadjenja[i] != null && iznenadjenja[i].isVidljivo())
-			{
-				if (iznenadjenja[i].getY() <= daska.getY()
-						&& iznenadjenja[i].getY() + iznenadjenja[i].getVisina() >= daska.getY()
-						&& iznenadjenja[i].getX() + iznenadjenja[i].getSirina() >= daska.getX()
-						&& iznenadjenja[i].getX() <= daska.getX() + daska.getSirina())
+		for (int i = 0; i < 20; i++)
+			for (int j = 0; j < 20; j++)
+				if (blokovi[i][j] != null && blokovi[i][j].getIznenadjenje() != null
+						&& blokovi[i][j].getIznenadjenje().isVidljivo())
 				{
-					iznenadjenja[i].primeniIznenadjenje();
-					iznenadjenja[i].setVidljivo(false);
-					return iznenadjenja[i];
+					if (blokovi[i][j].getIznenadjenje().getY() <= daska.getY()
+							&& blokovi[i][j].getIznenadjenje().getY()
+									+ blokovi[i][j].getIznenadjenje().getVisina() >= daska.getY()
+							&& blokovi[i][j].getIznenadjenje().getX()
+									+ blokovi[i][j].getIznenadjenje().getSirina() >= daska.getX()
+							&& blokovi[i][j].getIznenadjenje().getX() <= daska.getX() + daska.getSirina())
+					{
+						Iznenadjenje izn = blokovi[i][j].getIznenadjenje();
+						blokovi[i][j].getIznenadjenje().primeniIznenadjenje();
+						blokovi[i][j].getIznenadjenje().setVidljivo(false);
+						blokovi[i][j].setIznenadjenje(null);
+
+						return izn;
+					}
 				}
-			}
-		
+
 		return null;
 	}
 
-	public void predjiNivo()
+	public boolean predjiNivo()
 	{
 		boolean flag = true;
 
@@ -612,12 +659,12 @@ public class Engine
 			nivo++;
 			postaviNivo();
 		}
+
+		return flag;
 	}
 
 	public boolean isKraj()
 	{
-		if (brojZivota == 0) kraj = true;
-
 		return kraj;
 	}
 
@@ -674,11 +721,6 @@ public class Engine
 	public void setBrojZivota(int brojZivota)
 	{
 		this.brojZivota = brojZivota;
-	}
-
-	public Iznenadjenje[] getIznenadjenja()
-	{
-		return iznenadjenja;
 	}
 
 	public boolean isPomeranjeLopticeSaDaskom()

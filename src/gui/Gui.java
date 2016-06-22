@@ -19,7 +19,15 @@ import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 import engine.Engine;
+import iznenadjenja.BonusZivot;
 import iznenadjenja.Iznenadjenje;
+import iznenadjenja.ProbojnostLoptice;
+import iznenadjenja.ProduzenjeDaske;
+import iznenadjenja.SkracenjeDaske;
+import iznenadjenja.SmanjenjeZivota;
+import iznenadjenja.UbrzanjeLoptice;
+import iznenadjenja.UsporenjeLoptice;
+import iznenadjenja.VatrenostLoptice;
 
 public class Gui extends JFrame
 {
@@ -27,7 +35,7 @@ public class Gui extends JFrame
 	private Engine engine = new Engine();
 	private JPanel contentPane;
 	private JPanel[][] blokovi;
-	private JPanel[] iznenadjenja;
+	private PanelIznenadjenja[] iznenadjenja;
 	private JPanel loptica;
 	private JPanel daska;
 	private JLayeredPane glavniPanel;
@@ -47,6 +55,7 @@ public class Gui extends JFrame
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(Frame.MAXIMIZED_BOTH);
+		setUndecorated(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -69,6 +78,8 @@ public class Gui extends JFrame
 		contentPane.add(panelDesno);
 
 		setVisible(true);
+		
+		//System.out.println(getHeight());
 
 		postaviDeloveIgre();
 		mouseListener();
@@ -97,25 +108,6 @@ public class Gui extends JFrame
 				blokovi[i][j].setBackground(Color.BLACK);
 				glavniPanel.add(blokovi[i][j], 0);
 			}
-
-		// IZNENADJENJA
-		iznenadjenja = new JPanel[6];
-		Iznenadjenje[] izn = engine.getIznenadjenja();
-
-		for (int i = 0; i < 6; i++)
-		{
-			iznenadjenja[i] = new JPanel();
-			iznenadjenja[i].setSize(50, 50);
-			iznenadjenja[i].setOpaque(true);
-			iznenadjenja[i].setVisible(false);
-			ocistiPanelIDodajSliku(iznenadjenja[i], izn[i].getSlika());
-
-			FlowLayout f = (FlowLayout) iznenadjenja[i].getLayout();
-			f.setHgap(0);
-			f.setVgap(0);
-
-			glavniPanel.add(iznenadjenja[i], 0);
-		}
 
 		// DASKA
 		daska = new JPanel();
@@ -149,9 +141,40 @@ public class Gui extends JFrame
 		loptica.setBounds(x, y, precnik, precnik);
 		loptica.setOpaque(true);
 		loptica.setBackground(Color.BLACK);
-		ocistiPanelIDodajSliku(loptica, "/Loptica.png");
+		ocistiPanelIDodajSliku(loptica, engine.getLoptica().getSlika());
 		glavniPanel.add(loptica, 0);
+		
+		// IZNENADJENJA
+		uzmiIznenadjenja();
+		
 
+	}
+	
+	private void uzmiIznenadjenja()
+	{
+		int p = 0;
+		iznenadjenja = new PanelIznenadjenja[engine.getNivo() + 3];
+		
+		for (int i = 0; i < 20; i++)
+			for (int j = 0; j < 20; j++)
+				if (engine.getBlok(i, j) != null && engine.getBlok(i, j).getIznenadjenje() != null)
+				{
+					iznenadjenja[p] = new PanelIznenadjenja(engine.getBlok(i, j).getIznenadjenje());
+					iznenadjenja[p].setSize(50, 50);
+					iznenadjenja[p].setOpaque(true);
+					iznenadjenja[p].setVisible(false);
+					
+					FlowLayout f = (FlowLayout) iznenadjenja[p].getLayout();
+					f.setHgap(0);
+					f.setVgap(0);
+					
+					ocistiPanelIDodajSliku(iznenadjenja[p], engine.getBlok(i, j).getIznenadjenje().getSlika());
+					glavniPanel.add(iznenadjenja[p], 0);
+					
+					p++;
+				}
+					
+					
 	}
 
 	private void mouseListener()
@@ -165,6 +188,18 @@ public class Gui extends JFrame
 				engine.getDaska().pomeriSe();
 				daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
 						engine.getDaska().getVisina());
+				
+				if (engine.isPomeranjeLopticeSaDaskom())
+				{
+					engine.getLoptica().setX(engine.getDaska().getX() + engine.getDaska().getSirina() / 2);	
+					
+					int x = engine.getLoptica().getX() - engine.getLoptica().getR();
+					int y = engine.getLoptica().getY() - engine.getLoptica().getR();
+					int precnik = engine.getLoptica().getR() * 2;
+
+					loptica.setBounds(x, y, precnik, precnik);
+				}
+				
 			}
 
 			@Override
@@ -180,6 +215,8 @@ public class Gui extends JFrame
 			public void mouseReleased(MouseEvent e)
 			{
 				timerLoptica.start();
+				if (engine.isPomeranjeLopticeSaDaskom())
+					engine.setPomeranjeLopticeSaDaskom(false);
 			}
 
 			@Override
@@ -223,11 +260,58 @@ public class Gui extends JFrame
 
 				if (engine.isKraj())
 				{
-					timerLoptica.stop();
-					JOptionPane.showMessageDialog(null, "Izgubili ste!");
+//					timerLoptica.stop();
+//					
+//					osveziGuiBlokovi();
+//					osveziGuiIznenadjenja();
+//					
+//					engine.postaviPocetneVrednosti();
+//					
+//					daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
+//							engine.getDaska().getVisina());
+//					ocistiPanelIDodajSliku(daska, "/Daska" + engine.getDaska().getSirina() + ".png");
+//					
+//					engine.getLoptica().setX(engine.getDaska().getX() + engine.getDaska().getSirina() / 2);	
+//					
+//					int x = engine.getLoptica().getX() - engine.getLoptica().getR();
+//					int y = engine.getLoptica().getY() - engine.getLoptica().getR();
+//					int precnik = engine.getLoptica().getR() * 2;
+//
+//					loptica.setBounds(x, y, precnik, precnik);
+//					ocistiPanelIDodajSliku(loptica, engine.getLoptica().getSlika());
+//					
+	
+					
+					if (engine.getBrojZivota() == 0)
+					{
+						JOptionPane.showMessageDialog(null, "Izgubili ste!");
+					}
+
 				}
 
-				engine.predjiNivo();
+				if (engine.predjiNivo())
+				{
+					timerLoptica.stop();
+					unistiPaneleIznenadjenja();
+					
+					osveziGuiBlokovi();
+					osveziGuiIznenadjenja();
+					
+					daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
+							engine.getDaska().getVisina());
+					ocistiPanelIDodajSliku(daska, "/Daska" + engine.getDaska().getSirina() + ".png");
+					
+					engine.getLoptica().setX(engine.getDaska().getX() + engine.getDaska().getSirina() / 2);	
+					
+					int x = engine.getLoptica().getX() - engine.getLoptica().getR();
+					int y = engine.getLoptica().getY() - engine.getLoptica().getR();
+					int precnik = engine.getLoptica().getR() * 2;
+
+					loptica.setBounds(x, y, precnik, precnik);
+					ocistiPanelIDodajSliku(loptica, engine.getLoptica().getSlika());
+					
+					uzmiIznenadjenja();
+				}
 
 				int x = engine.getLoptica().getX() - engine.getLoptica().getR();
 				int y = engine.getLoptica().getY() - engine.getLoptica().getR();
@@ -246,20 +330,36 @@ public class Gui extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				boolean primljenaDaska = false;
+				Iznenadjenje izn = engine.prihvatiIznenadjenje();
 
-				osveziGuiIznenadjenja();
-				primljenaDaska = engine.prihvatiIznenadjenje();
-				timerLoptica.setDelay(engine.getLoptica().getBrzinaLoptice());
-				zivoti.setText("BROJ ZIVOTA: " + engine.getBrojZivota());
-
-				if (primljenaDaska)
+				if (izn instanceof BonusZivot || izn instanceof SmanjenjeZivota)
+				{
+					zivoti.setText("BROJ ZIVOTA: " + engine.getBrojZivota());
+					
+					if (izn instanceof SmanjenjeZivota)
+					{
+						engine.postaviPocetneVrednosti();
+						osveziGuiBlokovi();
+						timerLoptica.stop();
+					}
+				}
+				else if (izn instanceof ProduzenjeDaske || izn instanceof SkracenjeDaske)
 				{
 					daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
 							engine.getDaska().getVisina());
+					
 					ocistiPanelIDodajSliku(daska, "/Daska" + engine.getDaska().getSirina() + ".png");
 				}
-
+				else if (izn instanceof UbrzanjeLoptice || izn instanceof UsporenjeLoptice)
+				{
+					timerLoptica.setDelay(engine.getLoptica().getBrzinaLoptice());
+				}
+				else if (izn instanceof VatrenostLoptice || izn instanceof ProbojnostLoptice)
+				{
+					ocistiPanelIDodajSliku(loptica, engine.getLoptica().getSlika());
+				}
+				
+				osveziGuiIznenadjenja();
 			}
 		});
 
@@ -290,26 +390,31 @@ public class Gui extends JFrame
 	private void osveziGuiIznenadjenja()
 	{
 		// PRIKAZI IZNENADJENJA
-		Iznenadjenje[] izn = engine.getIznenadjenja();
-
-		for (int i = 0; i < 6; i++)
+		
+		for (int i = 0; i < iznenadjenja.length; i++)
 		{
-			if (izn[i] != null)
+			if (iznenadjenja[i] != null)
 			{
-				if (izn[i].isVidljivo())
+				if (iznenadjenja[i].getIznenadjenje() != null && iznenadjenja[i].getIznenadjenje().isVidljivo())
 				{
 					iznenadjenja[i].setVisible(true);
-					iznenadjenja[i].setBounds(izn[i].getX(), izn[i].getY(), izn[i].getSirina(), izn[i].getVisina());
-					ocistiPanelIDodajSliku(iznenadjenja[i], izn[i].getSlika());
-					izn[i].spustiSe();
+					iznenadjenja[i].setBounds(iznenadjenja[i].getIznenadjenje().getX(), iznenadjenja[i].getIznenadjenje().getY(), 
+							iznenadjenja[i].getIznenadjenje().getSirina(), iznenadjenja[i].getIznenadjenje().getVisina());
+					iznenadjenja[i].getIznenadjenje().spustiSe();
+				}
+				else
+				{
+					iznenadjenja[i].setVisible(false);
 				}
 			}
-			else
-			{
-				iznenadjenja[i].setVisible(false);
-			}
-
 		}
+		
+	}
+	
+	private void unistiPaneleIznenadjenja()
+	{
+		for (int i = 0; i < iznenadjenja.length; i++)
+			iznenadjenja[i] = null;
 	}
 
 }
