@@ -263,6 +263,8 @@ public class Gui extends JFrame
 					timerLoptica.stop();
 					
 					engine.setKraj(false);
+					unistiPaneleIznenadjenja();
+					
 					
 					osveziGuiBlokovi();
 					osveziGuiIznenadjenja();
@@ -418,7 +420,9 @@ public class Gui extends JFrame
 	private void unistiPaneleIznenadjenja()
 	{
 		for (int i = 0; i < iznenadjenja.length; i++)
-			iznenadjenja[i] = null;
+			if (iznenadjenja[i] != null && iznenadjenja[i].getIznenadjenje() != null 
+				&& iznenadjenja[i].getIznenadjenje().isVidljivo())			
+				iznenadjenja[i].getIznenadjenje().setVidljivo(false);;
 	}
 
 }
