@@ -65,16 +65,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <enumeration id="8" language="java" name="loptica.TipLoptice" project="DxBall" 
-    file="/DxBall/src/loptica/TipLoptice.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="287" y="741"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </enumeration>  
-  <class id="9" language="java" name="daska.Daska" project="DxBall" file="/DxBall/src/daska/Daska.java" binary="false" 
+  <class id="8" language="java" name="daska.Daska" project="DxBall" file="/DxBall/src/daska/Daska.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="118" y="308"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -83,7 +74,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="iznenadjenja.UsporenjeLoptice" project="DxBall" 
+  <class id="9" language="java" name="iznenadjenja.UsporenjeLoptice" project="DxBall" 
     file="/DxBall/src/iznenadjenja/UsporenjeLoptice.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1084" y="1198"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -92,7 +83,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="gui.Gui" project="DxBall" file="/DxBall/src/gui/Gui.java" binary="false" 
+  <class id="10" language="java" name="gui.Gui" project="DxBall" file="/DxBall/src/gui/Gui.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="985" y="232"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -101,7 +92,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="blok.OkovaniBlok" project="DxBall" file="/DxBall/src/blok/OkovaniBlok.java" 
+  <class id="11" language="java" name="blok.OkovaniBlok" project="DxBall" file="/DxBall/src/blok/OkovaniBlok.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="298" y="1421"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -110,7 +101,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="iznenadjenja.BonusZivot" project="DxBall" 
+  <class id="12" language="java" name="iznenadjenja.BonusZivot" project="DxBall" 
     file="/DxBall/src/iznenadjenja/BonusZivot.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1264" y="1108"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -119,7 +110,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="gui.SlikaLabel" project="DxBall" file="/DxBall/src/gui/SlikaLabel.java" 
+  <class id="13" language="java" name="gui.SlikaLabel" project="DxBall" file="/DxBall/src/gui/SlikaLabel.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="467" y="77"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -128,7 +119,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="iznenadjenja.ProduzenjeDaske" project="DxBall" 
+  <class id="14" language="java" name="iznenadjenja.ProduzenjeDaske" project="DxBall" 
     file="/DxBall/src/iznenadjenja/ProduzenjeDaske.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1316" y="970"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -137,7 +128,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="iznenadjenja.Iznenadjenje" project="DxBall" 
+  <class id="15" language="java" name="iznenadjenja.Iznenadjenje" project="DxBall" 
     file="/DxBall/src/iznenadjenja/Iznenadjenje.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1019" y="800"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -146,7 +137,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="gui.MyPanel" project="DxBall" file="/DxBall/src/gui/MyPanel.java" binary="false" 
+  <class id="16" language="java" name="gui.MyPanel" project="DxBall" file="/DxBall/src/gui/MyPanel.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1325" y="92"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -155,7 +146,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="blok.Blok" project="DxBall" file="/DxBall/src/blok/Blok.java" binary="false" 
+  <class id="17" language="java" name="blok.Blok" project="DxBall" file="/DxBall/src/blok/Blok.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="494" y="997"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -164,16 +155,16 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="engine.Engine" project="DxBall" file="/DxBall/src/engine/Engine.java" 
+  <class id="18" language="java" name="engine.Engine" project="DxBall" file="/DxBall/src/engine/Engine.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="707" y="390"/>    
+    <position height="-1" width="-1" x="706" y="374"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="blok.NeprobojniBlok" project="DxBall" file="/DxBall/src/blok/NeprobojniBlok.java" 
+  <class id="19" language="java" name="blok.NeprobojniBlok" project="DxBall" file="/DxBall/src/blok/NeprobojniBlok.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="512" y="1424"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -182,7 +173,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="iznenadjenja.SmanjenjeZivota" project="DxBall" 
+  <class id="20" language="java" name="iznenadjenja.SmanjenjeZivota" project="DxBall" 
     file="/DxBall/src/iznenadjenja/SmanjenjeZivota.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1317" y="795"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -191,120 +182,112 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="22">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="23" name="loptica"/>      
-      <multiplicity id="24" minimum="0" maximum="1"/>    
+  <association id="21">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="22" name="loptica"/>      
+      <multiplicity id="23" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="25">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="18"/>  
+  <generalization id="24">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="17"/>  
   </generalization>  
-  <association id="26">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="27" name="tip"/>      
-      <multiplicity id="28" minimum="0" maximum="1"/>    
+  <association id="25">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="26" name="tip"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="29">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="30" name="tipLoptice"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
+  <generalization id="28">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <association id="30">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="31" name="blokovi"/>      
+      <multiplicity id="32" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
+    <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="32">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="18"/>  
-  </generalization>  
   <generalization id="33">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="16"/>  
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="15"/>  
   </generalization>  
-  <association id="34">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="35" name="blokovi"/>      
-      <multiplicity id="36" minimum="0" maximum="2147483647"/>    
+  <generalization id="34">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="35">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <association id="36">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="37" name="engine"/>      
+      <multiplicity id="38" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="37">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <generalization id="38">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
   <generalization id="39">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <association id="40">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="41" name="engine"/>      
-      <multiplicity id="42" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="43">    
     <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="18"/>  
+    <end type="TARGET" refId="17"/>  
   </generalization>  
-  <generalization id="44">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="16"/>  
+  <generalization id="40">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="15"/>  
   </generalization>  
-  <generalization id="45">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="18"/>  
+  <generalization id="41">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="17"/>  
   </generalization>  
-  <association id="46">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="47" name="engine"/>      
-      <multiplicity id="48" minimum="0" maximum="1"/>    
+  <association id="42">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="43" name="engine"/>      
+      <multiplicity id="44" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
+    <end type="TARGET" refId="18" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="49">    
+  <association id="45">    
     <bendpoint x="865" y="742"/>    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="50" name="iznenadjenja"/>      
-      <multiplicity id="51" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="46" name="iznenadjenja"/>      
+      <multiplicity id="47" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
+    <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="52">    
+  <association id="48">    
     <bendpoint x="430" y="141"/>    
     <bendpoint x="258" y="156"/>    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="53" name="daska"/>      
-      <multiplicity id="54" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="55">    
     <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="56" name="iznenadjenje"/>      
-      <multiplicity id="57" minimum="0" maximum="1"/>    
+      <attribute id="49" name="daska"/>      
+      <multiplicity id="50" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="58">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="16"/>  
+  <association id="51">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="52" name="iznenadjenje"/>      
+      <multiplicity id="53" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="54">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="15"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

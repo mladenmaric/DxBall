@@ -9,7 +9,7 @@ public class VatrenostLoptice extends Iznenadjenje
 
 	public VatrenostLoptice(Engine engine)
 	{
-		super(engine, "/VatrenaLoptica.gif");
+		super(engine, "/VatrenostLoptice.png");
 	}
 
 	public void primeniIznenadjenje()
