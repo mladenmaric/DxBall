@@ -42,7 +42,7 @@ public class Engine
 
 	public void init()
 	{
-		nivo = 2;
+		nivo = 3;
 		brojZivota = 3;
 		kraj = false;
 
@@ -351,132 +351,132 @@ public class Engine
 
 	private void postaviNivo3()
 	{
-		for(int j=4;j<16;j++)
+		for (int j = 4; j < 16; j++)
 		{
-			blokovi[3][j]=new NormalanBlok(3, j, "/ROZE.png");
-			blokovi[15][j]=new NormalanBlok(15, j, "/ROZE.png");
-			blokovi[5][j]=new NormalanBlok(5, j, "/LJUBICASTA.png");
-			blokovi[9][j]=new NormalanBlok(9, j, "/LJUBICASTA.png");
-			blokovi[13][j]=new NormalanBlok(13, j, "/LJUBICASTA.png");
-			blokovi[6][j]=new NormalanBlok(6, j, "/CRNA.png");
-			blokovi[12][j]=new NormalanBlok(12, j, "/CRNA.png");
-			blokovi[7][j]=new NormalanBlok(7, j, "/PLAVA.png");
-			blokovi[11][j]=new NormalanBlok(11, j, "/PLAVA.png");
+			blokovi[3][j] = new NormalanBlok(3, j, "/ROZE.png");
+			blokovi[15][j] = new NormalanBlok(15, j, "/ROZE.png");
+			blokovi[5][j] = new NormalanBlok(5, j, "/LJUBICASTA.png");
+			blokovi[9][j] = new NormalanBlok(9, j, "/LJUBICASTA.png");
+			blokovi[13][j] = new NormalanBlok(13, j, "/LJUBICASTA.png");
+			blokovi[6][j] = new NormalanBlok(6, j, "/CRNA.png");
+			blokovi[12][j] = new NormalanBlok(12, j, "/CRNA.png");
+			blokovi[7][j] = new NormalanBlok(7, j, "/PLAVA.png");
+			blokovi[11][j] = new NormalanBlok(11, j, "/PLAVA.png");
 		}
-		 
-		for(int i=0;i<3;i++)
+
+		for (int i = 0; i < 3; i++)
 		{
-			blokovi[i+3][3-i]= new NormalanBlok(i+3, 3-i, "/PLAVA.png");
-			blokovi[i+3][16+i]= new NormalanBlok(i+3, 16+i, "/PLAVA.png");
-			blokovi[i+13][i+1]= new NormalanBlok(i+13,i+1, "/PLAVA.png");
-			blokovi[15-i][16+i]= new NormalanBlok(15-i, 16+i, "/PLAVA.png");
-			
-			blokovi[i+4][3-i]=new NormalanBlok(i+4,3-i , "/ROZE.png");
-			blokovi[i+4][16+i]=new NormalanBlok(i+4,16+i , "/ROZE.png");
-			blokovi[i+12][i+1]=new NormalanBlok(i+12,i+1 , "/ROZE.png");
-			blokovi[14-i][16+i]=new NormalanBlok(14-i,16+i , "/ROZE.png");
-			
-			blokovi[i+6][3-i]=new NormalanBlok(i+6,3-i , "/LJUBICASTA.png");
-			blokovi[i+6][16+i]=new NormalanBlok(i+6,16+i , "/LJUBICASTA.png");
-			blokovi[i+10][i+1]=new NormalanBlok(i+10,i+1 , "/LJUBICASTA.png");
-			blokovi[12-i][16+i]=new NormalanBlok(12-i,16+i , "/LJUBICASTA.png");
+			blokovi[i + 3][3 - i] = new NormalanBlok(i + 3, 3 - i, "/PLAVA.png");
+			blokovi[i + 3][16 + i] = new NormalanBlok(i + 3, 16 + i, "/PLAVA.png");
+			blokovi[i + 13][i + 1] = new NormalanBlok(i + 13, i + 1, "/PLAVA.png");
+			blokovi[15 - i][16 + i] = new NormalanBlok(15 - i, 16 + i, "/PLAVA.png");
+
+			blokovi[i + 4][3 - i] = new NormalanBlok(i + 4, 3 - i, "/ROZE.png");
+			blokovi[i + 4][16 + i] = new NormalanBlok(i + 4, 16 + i, "/ROZE.png");
+			blokovi[i + 12][i + 1] = new NormalanBlok(i + 12, i + 1, "/ROZE.png");
+			blokovi[14 - i][16 + i] = new NormalanBlok(14 - i, 16 + i, "/ROZE.png");
+
+			blokovi[i + 6][3 - i] = new NormalanBlok(i + 6, 3 - i, "/LJUBICASTA.png");
+			blokovi[i + 6][16 + i] = new NormalanBlok(i + 6, 16 + i, "/LJUBICASTA.png");
+			blokovi[i + 10][i + 1] = new NormalanBlok(i + 10, i + 1, "/LJUBICASTA.png");
+			blokovi[12 - i][16 + i] = new NormalanBlok(12 - i, 16 + i, "/LJUBICASTA.png");
 		}
-		
-		blokovi[9][2]=new NormalanBlok(9, 2, "/LJUBICASTA.png");
-		blokovi[9][17]=new NormalanBlok(9, 17, "/LJUBICASTA.png");
-		
-		blokovi[7][3]=new NormalanBlok(7,3 , "/PLAVA.png");
-		blokovi[7][16]=new NormalanBlok(7,16 , "/PLAVA.png");
-		blokovi[11][3]=new NormalanBlok(11,3 , "/PLAVA.png");
-		blokovi[11][16]=new NormalanBlok(11,16 , "/PLAVA.png");
-		blokovi[8][3]=new NormalanBlok(8,3 , "/CRNA.png");
-		blokovi[8][16]=new NormalanBlok(8,16 , "/CRNA.png");
-		blokovi[10][3]=new NormalanBlok(10,3 , "/CRNA.png");
-		blokovi[10][16]=new NormalanBlok(10,16 , "/CRNA.png");
-		blokovi[9][3]=new NormalanBlok(9,3 , "/LJUBICASTA.png");
-		blokovi[9][16]=new NormalanBlok(9,16 , "/LJUBICASTA.png");
+
+		blokovi[9][2] = new NormalanBlok(9, 2, "/LJUBICASTA.png");
+		blokovi[9][17] = new NormalanBlok(9, 17, "/LJUBICASTA.png");
+
+		blokovi[7][3] = new NormalanBlok(7, 3, "/PLAVA.png");
+		blokovi[7][16] = new NormalanBlok(7, 16, "/PLAVA.png");
+		blokovi[11][3] = new NormalanBlok(11, 3, "/PLAVA.png");
+		blokovi[11][16] = new NormalanBlok(11, 16, "/PLAVA.png");
+		blokovi[8][3] = new NormalanBlok(8, 3, "/CRNA.png");
+		blokovi[8][16] = new NormalanBlok(8, 16, "/CRNA.png");
+		blokovi[10][3] = new NormalanBlok(10, 3, "/CRNA.png");
+		blokovi[10][16] = new NormalanBlok(10, 16, "/CRNA.png");
+		blokovi[9][3] = new NormalanBlok(9, 3, "/LJUBICASTA.png");
+		blokovi[9][16] = new NormalanBlok(9, 16, "/LJUBICASTA.png");
 	}
 
 	private void postaviNivo4()
 	{
-		for(int i=2;i<7;i++)
+		for (int i = 2; i < 7; i++)
 		{
-			blokovi[i][2]=new NormalanBlok(i,2, "/SVETLOPLAVA.png");
-			blokovi[i][17]=new NormalanBlok(i,17, "/SVETLOPLAVA.png");
-			blokovi[i+11][2]=new NormalanBlok(i+11,2, "/ROZE.png");
-			blokovi[i+11][17]=new NormalanBlok(i+11,17, "/ROZE.png");
+			blokovi[i][2] = new NormalanBlok(i, 2, "/SVETLOPLAVA.png");
+			blokovi[i][17] = new NormalanBlok(i, 17, "/SVETLOPLAVA.png");
+			blokovi[i + 11][2] = new NormalanBlok(i + 11, 2, "/ROZE.png");
+			blokovi[i + 11][17] = new NormalanBlok(i + 11, 17, "/ROZE.png");
 		}
-		
-		for(int j=3;j<7;j++)
+
+		for (int j = 3; j < 7; j++)
 		{
-			blokovi[7][j]=new NormalanBlok(7,j, "/SVETLOPLAVA.png");
-			blokovi[7][j+10]=new NormalanBlok(7,j+10, "/SVETLOPLAVA.png");
-			blokovi[12][j]=new NormalanBlok(12,j, "/ROZE.png");
-			blokovi[12][j+10]=new NormalanBlok(12,j+10, "/ROZE.png");
+			blokovi[7][j] = new NormalanBlok(7, j, "/SVETLOPLAVA.png");
+			blokovi[7][j + 10] = new NormalanBlok(7, j + 10, "/SVETLOPLAVA.png");
+			blokovi[12][j] = new NormalanBlok(12, j, "/ROZE.png");
+			blokovi[12][j + 10] = new NormalanBlok(12, j + 10, "/ROZE.png");
 		}
-		
-		for(int i=2;i<7;i++)
-			for(int j=8;j<12;j++)
+
+		for (int i = 2; i < 7; i++)
+			for (int j = 8; j < 12; j++)
 			{
-				blokovi[i][j]=new NormalanBlok(i, j, "/LJUBICASTA.png");
-				blokovi[i+11][j]=new NormalanBlok(i+11, j, "/LJUBICASTA.png");
+				blokovi[i][j] = new NormalanBlok(i, j, "/LJUBICASTA.png");
+				blokovi[i + 11][j] = new NormalanBlok(i + 11, j, "/LJUBICASTA.png");
 			}
-		
-		for(int i=0;i<3;i++)
+
+		for (int i = 0; i < 3; i++)
 		{
-			blokovi[i+3][7]=new NormalanBlok(i+3, 7, "/LJUBICASTA.png");
-			blokovi[i+3][12]=new NormalanBlok(i+3, 12, "/LJUBICASTA.png");
-			blokovi[i+14][7]=new NormalanBlok(i+14, 7, "/LJUBICASTA.png");
-			blokovi[i+14][12]=new NormalanBlok(i+14, 12, "/LJUBICASTA.png");
+			blokovi[i + 3][7] = new NormalanBlok(i + 3, 7, "/LJUBICASTA.png");
+			blokovi[i + 3][12] = new NormalanBlok(i + 3, 12, "/LJUBICASTA.png");
+			blokovi[i + 14][7] = new NormalanBlok(i + 14, 7, "/LJUBICASTA.png");
+			blokovi[i + 14][12] = new NormalanBlok(i + 14, 12, "/LJUBICASTA.png");
 		}
-		
-		blokovi[4][6]=new NormalanBlok(4, 6, "/LJUBICASTA.png");
-		blokovi[4][13]=new NormalanBlok(4, 13, "/LJUBICASTA.png");
-		blokovi[15][6]=new NormalanBlok(15, 6, "/LJUBICASTA.png");
-		blokovi[15][13]=new NormalanBlok(15, 13, "/LJUBICASTA.png");
-		
-		for(int i=0;i<4;i++)
+
+		blokovi[4][6] = new NormalanBlok(4, 6, "/LJUBICASTA.png");
+		blokovi[4][13] = new NormalanBlok(4, 13, "/LJUBICASTA.png");
+		blokovi[15][6] = new NormalanBlok(15, 6, "/LJUBICASTA.png");
+		blokovi[15][13] = new NormalanBlok(15, 13, "/LJUBICASTA.png");
+
+		for (int i = 0; i < 4; i++)
 		{
-			blokovi[i+8][2]=new EksplozivanBlok(i+8, 2);
-			blokovi[i+8][17]=new EksplozivanBlok(i+8, 17);
+			blokovi[i + 8][2] = new EksplozivanBlok(i + 8, 2);
+			blokovi[i + 8][17] = new EksplozivanBlok(i + 8, 17);
 		}
-		
-		for(int i=9;i<11;i++)
-			for(int j=3;j<7;j++)
+
+		for (int i = 9; i < 11; i++)
+			for (int j = 3; j < 7; j++)
 			{
-				blokovi[i][j]=new EksplozivanBlok(i, j);
-				blokovi[i][j+10]=new EksplozivanBlok(i, j+10);
+				blokovi[i][j] = new EksplozivanBlok(i, j);
+				blokovi[i][j + 10] = new EksplozivanBlok(i, j + 10);
 			}
-		
-		for(int j=7;j<13;j++)
+
+		for (int j = 7; j < 13; j++)
 		{
-			blokovi[7][j]=new NormalanBlok(7, j, "/SVETLOZELENA.png");
-			blokovi[12][j]=new NormalanBlok(12, j, "/SVETLOZELENA.png");
+			blokovi[7][j] = new NormalanBlok(7, j, "/SVETLOZELENA.png");
+			blokovi[12][j] = new NormalanBlok(12, j, "/SVETLOZELENA.png");
 		}
-		
-		for(int i=8;i<12;i++)
+
+		for (int i = 8; i < 12; i++)
 		{
-			blokovi[i][7]=new NormalanBlok(i, 7, "/SVETLOZELENA.png");
-			blokovi[i][12]=new NormalanBlok(i, 12, "/SVETLOZELENA.png");
+			blokovi[i][7] = new NormalanBlok(i, 7, "/SVETLOZELENA.png");
+			blokovi[i][12] = new NormalanBlok(i, 12, "/SVETLOZELENA.png");
 		}
-		
-		for(int j=8;j<12;j++)
-			blokovi[8][j]=new NormalanBlok(8, j, "/PLAVA.png");
-		
-		blokovi[9][8]=new NormalanBlok(9, 8, "/PLAVA.png");
-		blokovi[9][11]=new NormalanBlok(9, 11, "/PLAVA.png");
-		blokovi[11][8]=new NormalanBlok(11, 8, "/PLAVA.png");
-		blokovi[11][11]=new NormalanBlok(11, 11, "/PLAVA.png");
-		
-		blokovi[9][9]=new OkovaniBlok(9, 9);
-		blokovi[9][10]=new OkovaniBlok(9, 10);
-		blokovi[10][8]=new OkovaniBlok(10, 8);
-		blokovi[10][11]=new OkovaniBlok(10, 11);
-		blokovi[11][9]=new OkovaniBlok(11, 9);
-		blokovi[11][10]=new OkovaniBlok(11, 10);
-		
-		blokovi[10][9]=new NeprobojniBlok(10, 9);
-		blokovi[10][10]=new NeprobojniBlok(10, 10);
+
+		for (int j = 8; j < 12; j++)
+			blokovi[8][j] = new NormalanBlok(8, j, "/PLAVA.png");
+
+		blokovi[9][8] = new NormalanBlok(9, 8, "/PLAVA.png");
+		blokovi[9][11] = new NormalanBlok(9, 11, "/PLAVA.png");
+		blokovi[11][8] = new NormalanBlok(11, 8, "/PLAVA.png");
+		blokovi[11][11] = new NormalanBlok(11, 11, "/PLAVA.png");
+
+		blokovi[9][9] = new OkovaniBlok(9, 9);
+		blokovi[9][10] = new OkovaniBlok(9, 10);
+		blokovi[10][8] = new OkovaniBlok(10, 8);
+		blokovi[10][11] = new OkovaniBlok(10, 11);
+		blokovi[11][9] = new OkovaniBlok(11, 9);
+		blokovi[11][10] = new OkovaniBlok(11, 10);
+
+		blokovi[10][9] = new NeprobojniBlok(10, 9);
+		blokovi[10][10] = new NeprobojniBlok(10, 10);
 	}
 
 	private void postaviNivo5()
@@ -520,7 +520,8 @@ public class Engine
 	public void odbijLopticuOdDaske()
 	{
 		if (loptica.getY() + loptica.getR() >= daska.getY() && loptica.getY() <= daska.getY()
-				&& loptica.getX() >= daska.getX() && loptica.getX() <= daska.getX() + daska.getSirina())
+				&& loptica.getX() - loptica.getR() >= daska.getX()
+				&& loptica.getX() - loptica.getR() <= daska.getX() + daska.getSirina())
 		{
 			if (loptica.getUgaoKretanja() >= Math.PI && loptica.getUgaoKretanja() <= 2 * Math.PI)
 			{
@@ -528,7 +529,7 @@ public class Engine
 				loptica.setUgaoKretanja(Math.PI / 2 - (p / 37) * 100 / daska.getSirina());
 			}
 		}
-		
+
 	}
 
 	public void odbijLopticuOdBloka()
@@ -643,9 +644,9 @@ public class Engine
 							{
 								if (loptica.getX() - blokovi[i][j].getX()
 										- blokovi[i][j].getSirina() >= blokovi[i][j].getY() - loptica.getY())
-									loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
-								else
 									loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
+								else
+									loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
 							}
 
 							loptica.unistiPolje(i, j, blokovi);
@@ -687,9 +688,9 @@ public class Engine
 							if (!(loptica instanceof ProbijajucaLoptica))
 							{
 								if (loptica.getX() - blokovi[i][j].getX() >= loptica.getY() - blokovi[i][j].getY())
-									loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
-								else
 									loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
+								else
+									loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
 							}
 
 							loptica.unistiPolje(i, j, blokovi);

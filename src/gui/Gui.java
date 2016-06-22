@@ -270,6 +270,7 @@ public class Gui extends JFrame
 					osveziGuiIznenadjenja();
 					
 					engine.postaviPocetneVrednosti();
+					timerLoptica.setDelay(engine.getLoptica().getBrzinaLoptice());
 					
 					daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
 							engine.getDaska().getVisina());
@@ -300,6 +301,7 @@ public class Gui extends JFrame
 					
 					osveziGuiBlokovi();
 					osveziGuiIznenadjenja();
+					timerLoptica.setDelay(engine.getLoptica().getBrzinaLoptice());
 					
 					daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
 							engine.getDaska().getVisina());
