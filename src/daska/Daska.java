@@ -63,11 +63,13 @@ public class Daska
 
 	public void produziSe()
 	{
-		this.sirina *= 2;
+		if(sirina<200)
+			this.sirina *= 2;
 	}
 
 	public void skratiSe()
 	{
-		this.sirina /= 2;
+		if(sirina>50)
+			this.sirina /= 2;
 	}
 }
