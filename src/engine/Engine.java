@@ -42,7 +42,7 @@ public class Engine
 
 	public void init()
 	{
-		nivo = 3;
+		nivo = 1;
 		brojZivota = 3;
 		kraj = false;
 
@@ -68,7 +68,8 @@ public class Engine
 			postaviNivo3();
 		else if (nivo == 4)
 			postaviNivo4();
-		else if (nivo == 5) postaviNivo5();
+		else if (nivo == 5) 
+			postaviNivo5();
 
 		postaviIznenadjenja();
 	}
@@ -84,7 +85,7 @@ public class Engine
 		int x = daska.getX() + daska.getSirina() / 2;
 		int y = daska.getY() - r;
 
-		loptica = new NormalnaLoptica(x, y, 7, Math.PI / 2+0.18, 15);
+		loptica = new NormalnaLoptica(x, y, 7, Math.PI / 2, 15);
 
 		pomeranjeLopticeSaDaskom = true;
 	}
@@ -707,7 +708,7 @@ public class Engine
 								if(i<19 && blokovi[i+1][j]!=null && !blokovi[i+1][j].isUnisten() && loptica.getY()>=blokovi[i][j].getY()+blokovi[i][j].getVisina())
 									continue;
 								
-								if (loptica.getX() - blokovi[i][j].getX() >= loptica.getY() - blokovi[i][j].getY())
+								if (blokovi[i][j].getX() - loptica.getX() >= blokovi[i][j].getY() - loptica.getY())
 									loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
 								else
 									loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
