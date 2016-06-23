@@ -84,7 +84,7 @@ public class Engine
 		int x = daska.getX() + daska.getSirina() / 2;
 		int y = daska.getY() - r;
 
-		loptica = new NormalnaLoptica(x, y, 7, Math.PI / 2, 15);
+		loptica = new NormalnaLoptica(x, y, 7, Math.PI / 2+0.18, 15);
 
 		pomeranjeLopticeSaDaskom = true;
 	}
@@ -551,6 +551,11 @@ public class Engine
 						{
 							if (!(loptica instanceof ProbijajucaLoptica))
 							{
+								if(j<19 && blokovi[i][j+1]!=null && !blokovi[i][j+1].isUnisten() && loptica.getX()>=blokovi[i][j].getX()+blokovi[i][j].getSirina())
+									continue;
+								if(i<19 && blokovi[i+1][j]!=null && !blokovi[i+1][j].isUnisten() && loptica.getY()>=blokovi[i][j].getY()+blokovi[i][j].getVisina())
+									continue;
+								
 								if (blokovi[i][j].getX() - loptica.getX() >= loptica.getY() - blokovi[i][j].getY()
 										- blokovi[i][j].getVisina())
 									loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
@@ -597,6 +602,11 @@ public class Engine
 						{
 							if (!(loptica instanceof ProbijajucaLoptica))
 							{
+								if(j<19 && blokovi[i][j+1]!=null && !blokovi[i][j+1].isUnisten() && loptica.getX()>=blokovi[i][j].getX()+blokovi[i][j].getSirina())
+									continue;
+								if(i<19 && blokovi[i+1][j]!=null && !blokovi[i+1][j].isUnisten() && loptica.getY()>=blokovi[i][j].getY()+blokovi[i][j].getVisina())
+									continue;
+
 								if (loptica.getX() - blokovi[i][j].getX() - blokovi[i][j].getSirina() >= loptica.getY()
 										- blokovi[i][j].getY() - blokovi[i][j].getVisina())
 									loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
@@ -642,6 +652,11 @@ public class Engine
 						{
 							if (!(loptica instanceof ProbijajucaLoptica))
 							{
+								if(j<19 && blokovi[i][j+1]!=null && !blokovi[i][j+1].isUnisten() && loptica.getX()>=blokovi[i][j].getX()+blokovi[i][j].getSirina())
+									continue;
+								if(i<19 && blokovi[i+1][j]!=null && !blokovi[i+1][j].isUnisten() && loptica.getY()>=blokovi[i][j].getY()+blokovi[i][j].getVisina())
+									continue;
+								
 								if (loptica.getX() - blokovi[i][j].getX()
 										- blokovi[i][j].getSirina() >= blokovi[i][j].getY() - loptica.getY())
 									loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
@@ -687,6 +702,11 @@ public class Engine
 						{
 							if (!(loptica instanceof ProbijajucaLoptica))
 							{
+								if(j<19 && blokovi[i][j+1]!=null && !blokovi[i][j+1].isUnisten() && loptica.getX()>=blokovi[i][j].getX()+blokovi[i][j].getSirina())
+									continue;
+								if(i<19 && blokovi[i+1][j]!=null && !blokovi[i+1][j].isUnisten() && loptica.getY()>=blokovi[i][j].getY()+blokovi[i][j].getVisina())
+									continue;
+								
 								if (loptica.getX() - blokovi[i][j].getX() >= loptica.getY() - blokovi[i][j].getY())
 									loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
 								else
