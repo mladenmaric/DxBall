@@ -5,7 +5,8 @@ public class Test
 
 	public static void main(String[] args)
 	{
-		new Gui("DX - BALL");
+		Gui g = new Gui("DX - BALL");
+		g.setVisible(true);
 	}
 
 }
