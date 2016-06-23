@@ -55,6 +55,7 @@ public class Gui extends JFrame
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(Frame.MAXIMIZED_BOTH);
+		setLocationRelativeTo(null);
 		//setUndecorated(true);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
@@ -392,6 +393,20 @@ public class Gui extends JFrame
 						engine.postaviPocetneVrednosti();
 						osveziGuiBlokovi();
 						timerLoptica.stop();
+						
+						daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
+								engine.getDaska().getVisina());
+						ocistiPanelIDodajSliku(daska, "/Daska" + engine.getDaska().getSirina() + ".png");
+						
+						engine.getLoptica().setX(engine.getDaska().getX() + engine.getDaska().getSirina() / 2);	
+						
+						int x = engine.getLoptica().getX() - engine.getLoptica().getR();
+						int y = engine.getLoptica().getY() - engine.getLoptica().getR();
+						int precnik = engine.getLoptica().getR() * 2;
+
+						loptica.setBounds(x, y, precnik, precnik);
+						ocistiPanelIDodajSliku(loptica, engine.getLoptica().getSlika());
+						
 					}
 				}
 				else if (izn instanceof ProduzenjeDaske || izn instanceof SkracenjeDaske)
