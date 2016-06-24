@@ -34,6 +34,7 @@ public class Engine
 	private int nivo;
 	private int brojZivota;
 	private boolean pomeranjeLopticeSaDaskom;
+	private int brojPoena;
 
 	public Engine(int visina)
 	{
@@ -50,6 +51,7 @@ public class Engine
 		nivo = 1;
 		brojZivota = 3;
 		kraj = false;
+		brojPoena=0;
 
 		blokovi = new Blok[20][20];
 		daska = new Daska();
@@ -571,6 +573,7 @@ public class Engine
 							}
 
 							loptica.unistiPolje(i, j, blokovi);
+							brojPoena+=10;
 							flag = true;
 							break;
 						}
@@ -583,6 +586,7 @@ public class Engine
 								loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
 
 							loptica.unistiPolje(i, j, blokovi);
+							brojPoena+=10;
 							flag = true;
 							break;
 						}
@@ -595,6 +599,7 @@ public class Engine
 								loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
 
 							loptica.unistiPolje(i, j, blokovi);
+							brojPoena+=10;
 							flag = true;
 							break;
 						}
@@ -624,6 +629,7 @@ public class Engine
 							}
 
 							loptica.unistiPolje(i, j, blokovi);
+							brojPoena+=10;
 							flag = true;
 							break;
 						}
@@ -636,6 +642,7 @@ public class Engine
 								loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
 
 							loptica.unistiPolje(i, j, blokovi);
+							brojPoena+=10;
 							flag = true;
 							break;
 						}
@@ -648,6 +655,7 @@ public class Engine
 								loptica.setUgaoKretanja(Math.PI - loptica.getUgaoKretanja());
 
 							loptica.unistiPolje(i, j, blokovi);
+							brojPoena+=10;
 							flag = true;
 							break;
 						}
@@ -676,6 +684,7 @@ public class Engine
 							}
 
 							loptica.unistiPolje(i, j, blokovi);
+							brojPoena+=10;
 							flag = true;
 							break;
 						}
@@ -688,6 +697,7 @@ public class Engine
 								loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
 
 							loptica.unistiPolje(i, j, blokovi);
+							brojPoena+=10;
 							flag = true;
 							break;
 						}
@@ -700,6 +710,7 @@ public class Engine
 								loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
 
 							loptica.unistiPolje(i, j, blokovi);
+							brojPoena+=10;
 							flag = true;
 							break;
 						}
@@ -727,6 +738,7 @@ public class Engine
 							}
 
 							loptica.unistiPolje(i, j, blokovi);
+							brojPoena+=10;
 							flag = true;
 							break;
 						}
@@ -739,6 +751,7 @@ public class Engine
 								loptica.setUgaoKretanja(2 * Math.PI - loptica.getUgaoKretanja());
 
 							loptica.unistiPolje(i, j, blokovi);
+							brojPoena+=10;
 							flag = true;
 							break;
 						}
@@ -751,6 +764,7 @@ public class Engine
 								loptica.setUgaoKretanja(3 * Math.PI - loptica.getUgaoKretanja());
 
 							loptica.unistiPolje(i, j, blokovi);
+							brojPoena+=10;
 							flag = true;
 							break;
 						}
@@ -907,4 +921,15 @@ public class Engine
 	{
 		return minVisina;
 	}
+
+	public int getBrojPoena()
+	{
+		return brojPoena;
+	}
+
+	public void setBrojPoena(int brojPoena)
+	{
+		this.brojPoena = brojPoena;
+	}
+
 }
