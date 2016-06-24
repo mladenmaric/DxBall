@@ -2,7 +2,8 @@ package gui;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Frame;
+import java.awt.GraphicsEnvironment;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -31,7 +32,7 @@ import iznenadjenja.VatrenostLoptice;
 public class Gui extends JFrame
 {
 	private static final long serialVersionUID = 1L;
-	private Engine engine = new Engine();
+	private Engine engine;
 	private JPanel contentPane;
 	private JPanel[][] blokovi;
 	private PanelIznenadjenja[] iznenadjenja;
@@ -44,6 +45,10 @@ public class Gui extends JFrame
 	private JPanel panelDesno;
 	private JPanel levaOgrada;
 	private JPanel desnaOgrada;
+	private JPanel slikeZivota;
+	private JPanel skorBrojevi;
+	private static int SIRINA;
+	private static int VISINA;
 
 	public Gui(String title)
 	{
@@ -53,29 +58,36 @@ public class Gui extends JFrame
 
 	private void init()
 	{
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setExtendedState(Frame.MAXIMIZED_BOTH);
-		setLocationRelativeTo(null);
-		//setUndecorated(true);
-		contentPane = new JPanel();
+		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        setMaximizedBounds(env.getMaximumWindowBounds());
+        
+        SIRINA = (int) env.getMaximumWindowBounds().getWidth();
+        VISINA = (int) env.getMaximumWindowBounds().getHeight();
+        
+        setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        engine = new Engine(VISINA);
+        
+        contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		glavniPanel = new JLayeredPane();
 		glavniPanel.setOpaque(true);
 		glavniPanel.setBackground(Color.BLACK);
-		glavniPanel.setBounds(183, 0, 1000, 741);
+		glavniPanel.setBounds((SIRINA - 1000) / 2, 0, 1000, VISINA);
 		contentPane.add(glavniPanel);
 
 		panelLevo = new JPanel();
 		panelLevo.setBackground(Color.BLACK);
-		panelLevo.setBounds(0, 0, 183, 741);
+		panelLevo.setBounds(0, 0, (SIRINA - 1000) / 2, VISINA);
 		panelLevo.setLayout(null);
 		contentPane.add(panelLevo);
 
 		panelDesno = new JPanel();
 		panelDesno.setBackground(Color.BLACK);
-		panelDesno.setBounds(1183, 0, 183, 741);
+		panelDesno.setBounds((SIRINA - 1000) / 2 + 1000, 0, (SIRINA - 1000) / 2, VISINA);
 		panelDesno.setLayout(null);
 		contentPane.add(panelDesno);
 		
@@ -115,62 +127,14 @@ public class Gui extends JFrame
 		FlowLayout g = (FlowLayout) daska.getLayout();
 		g.setHgap(0);
 		g.setVgap(0);
+		
 
 		daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
 				engine.getDaska().getVisina());
 		daska.setOpaque(true);
-		ocistiPanelIDodajSliku(daska, "/Daska100.png");
+		ocistiPanelIDodajSliku(daska, "/Daska" + engine.getDaska().getSirina() + ".png");
 		glavniPanel.add(daska, 0);
 		
-		levaOgrada = new JPanel();
-		levaOgrada.setBounds(163, 0, 20, 741);
-		levaOgrada.setLayout(null);
-		panelLevo.add(levaOgrada);
-		
-		JLabel l1 = new JLabel(new ImageIcon(getClass().getResource("/Levo.png")));
-		l1.setOpaque(true);
-		l1.setSize(20, 741);
-		levaOgrada.add(l1);
-		
-		JPanel skor = new JPanel();
-		skor.setOpaque(false);
-		skor.setBounds(10, 11, 143, 50);
-		panelLevo.add(skor);
-		
-		JLabel l3 = new JLabel(new ImageIcon(getClass().getResource("/Skor.png")));
-		l3.setOpaque(false);
-		l3.setSize(143, 40);
-		skor.add(l3);
-		
-		JPanel skorBrojevi = new JPanel();
-		skorBrojevi.setOpaque(false);
-		skorBrojevi.setBounds(10, 77, 143, 89);
-		panelLevo.add(skorBrojevi);
-		
-		desnaOgrada = new JPanel();
-		desnaOgrada.setBounds(0, 0, 20, 741);
-		desnaOgrada.setLayout(null);
-		panelDesno.add(desnaOgrada);
-		
-		JLabel l2 = new JLabel(new ImageIcon(getClass().getResource("/Desno.png")));
-		l2.setOpaque(true);
-		l2.setSize(20, 741);
-		desnaOgrada.add(l2);
-		
-		JPanel slikeZivota = new JPanel();
-		slikeZivota.setOpaque(false);
-		slikeZivota.setBounds(67, 134, 59, 314);
-		panelDesno.add(slikeZivota);
-		
-		JPanel zivoti = new JPanel();
-		zivoti.setOpaque(false);
-		zivoti.setBounds(30, 11, 143, 89);
-		panelDesno.add(zivoti);
-		
-		JLabel l4 = new JLabel(new ImageIcon(getClass().getResource("/Zivoti.png")));
-		//l4.setOpaque(false);
-		l4.setSize(143, 40);
-		zivoti.add(l4);
 		
 
 		// LOPTICA
@@ -193,9 +157,86 @@ public class Gui extends JFrame
 		// IZNENADJENJA
 		uzmiIznenadjenja();
 		
+		// LEVI DEO
+		levaOgrada = new JPanel();
+		levaOgrada.setBounds((SIRINA - 1000) / 2 - 20, 0, 20, VISINA);
+		levaOgrada.setLayout(null);
+		panelLevo.add(levaOgrada);
+		
+		JLabel l1 = new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("/Levo.png"))
+				.getImage().getScaledInstance(20, VISINA, Image.SCALE_SMOOTH)));
+		l1.setOpaque(true);
+		l1.setSize(20, VISINA);
+		levaOgrada.add(l1);
+		
+		// TEKST SKOR
+		JPanel skor = new JPanel();
+		skor.setOpaque(false);
+		skor.setBounds(10, 11, 143, 50);
+		panelLevo.add(skor);
+		
+		JLabel l3 = new JLabel(new ImageIcon(getClass().getResource("/Skor.png")));
+		l3.setOpaque(false);
+		l3.setSize(143, 40);
+		skor.add(l3);
+		
+		// BROJ SKOR
+		skorBrojevi = new JPanel();
+		skorBrojevi.setOpaque(false);
+		skorBrojevi.setBounds(10, 77, 143, 89); // prepraviti
+		panelLevo.add(skorBrojevi);
+		
+		
+		// DESNI DEO
+		desnaOgrada = new JPanel();
+		desnaOgrada.setBounds(0, 0, 20, VISINA);
+		desnaOgrada.setLayout(null);
+		panelDesno.add(desnaOgrada);
+		
+		JLabel l2 = new JLabel(new ImageIcon(new ImageIcon(getClass().getResource("/Desno.png"))
+				.getImage().getScaledInstance(20, VISINA, Image.SCALE_SMOOTH)));
+		l2.setOpaque(true);
+		l2.setSize(20, VISINA);
+		desnaOgrada.add(l2);
+		
+		// TEKST ZIVOTI
+		JPanel zivoti = new JPanel();
+		zivoti.setOpaque(false);
+		zivoti.setBounds(30, 11, 143, 89); // prepraviti
+		panelDesno.add(zivoti);
+		
+		JLabel l4 = new JLabel(new ImageIcon(getClass().getResource("/Zivoti.png")));
+		//l4.setOpaque(false);
+		l4.setSize(143, 40);
+		zivoti.add(l4);
+		
+		// SLIKE ZIVOTI
+		slikeZivota = new JPanel(null);
+		slikeZivota.setOpaque(false);
+		slikeZivota.setBounds(67, 134, 59, 314);
+		panelDesno.add(slikeZivota);
+		
+		prikaziSlikeZivota();
+		
+		
 
 	}
 	
+	private void prikaziSlikeZivota()
+	{
+		ocistiPanelIDodajSliku(slikeZivota, null);
+		
+		for (int i = 0; i < engine.getBrojZivota() - 1; i++)
+		{
+			JLabel l = new JLabel(new ImageIcon(getClass().getResource("/Zivot.png")));
+			l.setBounds(10, i * 10, 20, 5);
+			
+			slikeZivota.add(l);
+		
+		}
+		
+	}
+
 	private void uzmiIznenadjenja()
 	{
 		int p = 0;
@@ -316,6 +357,8 @@ public class Gui extends JFrame
 					osveziGuiIznenadjenja();
 					
 					engine.postaviPocetneVrednosti();
+					prikaziSlikeZivota();
+					
 					timerLoptica.setDelay(engine.getLoptica().getBrzinaLoptice());
 					
 					daska.setBounds(engine.getDaska().getX(), engine.getDaska().getY(), engine.getDaska().getSirina(),
@@ -386,7 +429,7 @@ public class Gui extends JFrame
 
 				if (izn instanceof BonusZivot || izn instanceof SmanjenjeZivota)
 				{
-					//zivoti.setText("BROJ ZIVOTA: " + engine.getBrojZivota());
+					prikaziSlikeZivota();
 					
 					if (izn instanceof SmanjenjeZivota)
 					{
