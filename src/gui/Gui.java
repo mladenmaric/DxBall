@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -46,7 +47,7 @@ public class Gui extends JFrame
 	private JPanel levaOgrada;
 	private JPanel desnaOgrada;
 	private JPanel slikeZivota;
-	private JPanel skorBrojevi;
+	private JLabel skorBrojevi;
 	private static int SIRINA;
 	private static int VISINA;
 
@@ -172,7 +173,7 @@ public class Gui extends JFrame
 		// TEKST SKOR
 		JPanel skor = new JPanel();
 		skor.setOpaque(false);
-		skor.setBounds(10, 11, 143, 50);
+		skor.setBounds((SIRINA - 1000) / 4 - 75, 10, 150, 50);
 		panelLevo.add(skor);
 		
 		JLabel l3 = new JLabel(new ImageIcon(getClass().getResource("/Skor.png")));
@@ -181,9 +182,11 @@ public class Gui extends JFrame
 		skor.add(l3);
 		
 		// BROJ SKOR
-		skorBrojevi = new JPanel();
+		skorBrojevi = new JLabel("0");
 		skorBrojevi.setOpaque(false);
-		skorBrojevi.setBounds(10, 77, 143, 89); // prepraviti
+		skorBrojevi.setBounds((SIRINA - 1000) / 4 - 75, 80, 150, 50);
+		skorBrojevi.setForeground(Color.WHITE);
+		skorBrojevi.setFont(new Font("Arial", Font.BOLD, 32));
 		panelLevo.add(skorBrojevi);
 		
 		
@@ -202,7 +205,7 @@ public class Gui extends JFrame
 		// TEKST ZIVOTI
 		JPanel zivoti = new JPanel();
 		zivoti.setOpaque(false);
-		zivoti.setBounds(30, 11, 143, 89); // prepraviti
+		zivoti.setBounds((SIRINA - 1000) / 4 - 75, 10, 150, 50);
 		panelDesno.add(zivoti);
 		
 		JLabel l4 = new JLabel(new ImageIcon(getClass().getResource("/Zivoti.png")));
@@ -213,7 +216,7 @@ public class Gui extends JFrame
 		// SLIKE ZIVOTI
 		slikeZivota = new JPanel(null);
 		slikeZivota.setOpaque(false);
-		slikeZivota.setBounds(67, 134, 59, 314);
+		slikeZivota.setBounds((SIRINA - 1000) / 4 - 75, 80, 60, 400);
 		panelDesno.add(slikeZivota);
 		
 		prikaziSlikeZivota();
@@ -234,7 +237,11 @@ public class Gui extends JFrame
 			slikeZivota.add(l);
 		
 		}
-		
+	}
+	
+	private void prikaziSkor()
+	{
+		skorBrojevi.setText(engine.getBrojPoena() + "");
 	}
 
 	private void uzmiIznenadjenja()
@@ -343,7 +350,8 @@ public class Gui extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				engine.pomeriLopticu(5);
+				engine.pomeriLopticu(7);
+				prikaziSkor();
 
 				if (engine.isKraj())
 				{
@@ -355,6 +363,7 @@ public class Gui extends JFrame
 					
 					osveziGuiBlokovi();
 					osveziGuiIznenadjenja();
+					
 					
 					engine.postaviPocetneVrednosti();
 					prikaziSlikeZivota();
@@ -377,14 +386,33 @@ public class Gui extends JFrame
 					
 					if (engine.getBrojZivota() == 0)
 					{
-						JOptionPane.showMessageDialog(null, "Izgubili ste!");
-						System.exit(0);
+						int a = JOptionPane.showConfirmDialog(null, "Izgubili ste!\nDa li zelite novu igru?", "Kraj!", JOptionPane.YES_NO_OPTION);
+						
+						if (a == JOptionPane.YES_OPTION)
+						{
+							engine.init();
+							unistiPaneleIznenadjenja();
+							osveziGuiBlokovi();
+							osveziGuiIznenadjenja();
+							prikaziSlikeZivota();
+							uzmiIznenadjenja();
+							prikaziSkor();
+						}
+						else
+							System.exit(0);
 					}
 
 				}
 
 				if (engine.predjiNivo())
 				{
+					
+					if (engine.isKrajIgre())
+					{
+						JOptionPane.showMessageDialog(null, "Presli ste igru! Cestitamo!");
+						System.exit(0);
+					}
+					
 					timerLoptica.stop();
 					unistiPaneleIznenadjenja();
 					
@@ -490,11 +518,20 @@ public class Gui extends JFrame
 		// PRIKAZI BLOKOVE
 		for (int i = 0; i < 20; i++)
 			for (int j = 0; j < 20; j++)
-				if (engine.getBlok(i, j) == null || engine.getBlok(i, j).isUnisten())
-					ocistiPanelIDodajSliku(blokovi[i][j], null);
-				else
-					ocistiPanelIDodajSliku(blokovi[i][j], engine.getBlok(i, j).getPocetnaSlika());
-
+				if (engine.getBlok(i, j) != null)
+				{
+					if (engine.getBlok(i, j).getSlikaUnistenja() != null)
+					{
+						ocistiPanelIDodajSliku(blokovi[i][j], engine.getBlok(i, j).getSlikaUnistenja());
+						engine.getBlok(i, j).setSlikaUnistenja(null);
+					}
+					else if (engine.getBlok(i, j).isUnisten())
+						ocistiPanelIDodajSliku(blokovi[i][j], null);
+					else
+						ocistiPanelIDodajSliku(blokovi[i][j], engine.getBlok(i, j).getPocetnaSlika());
+				}
+				else ocistiPanelIDodajSliku(blokovi[i][j], null);
+					
 	}
 
 	private void osveziGuiIznenadjenja()

@@ -8,12 +8,16 @@ public class OkovaniBlok extends Blok
 		super(i, j, "/OkovaniBlok.png");
 	}
 
-	public void unistiSe(Blok[][] blokovi)
+	public void unistiSe(Blok[][] blokovi, boolean flag)
 	{
 		int i = getI();
 		int j = getJ();
+		Blok.unistenoBlokova++;
 		
-		blokovi[i][j] = new NeprobojniBlok(super.getI(), super.getJ());
+		if (flag)
+			setSlikaUnistenja("/SlikaUnistenja.gif");
+		else
+			blokovi[i][j] = new NeprobojniBlok(super.getI(), super.getJ());
 	}
 
 }
