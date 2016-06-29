@@ -8,12 +8,13 @@ public class NormalanBlok extends Blok
 		super(i, j, pocetnaSlika);
 	}
 
-	public void unistiSe(Blok[][] blokovi)
+	public void unistiSe(Blok[][] blokovi, boolean flag)
 	{
-		int i = getI();
-		int j = getJ();
+		setUnisten(true);
+		Blok.unistenoBlokova++;
 		
-		blokovi[i][j].setUnisten(true);
+		if (flag)
+			setSlikaUnistenja("/SlikaUnistenja.gif");
 		
 		if (getIznenadjenje() != null)
 			getIznenadjenje().setVidljivo(true);

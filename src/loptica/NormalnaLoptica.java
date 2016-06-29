@@ -15,7 +15,7 @@ public class NormalnaLoptica extends Loptica
 	public void unistiPolje(int i, int j, Blok[][] blokovi)
 	{
 		if (!(blokovi[i][j] instanceof NeprobojniBlok)) 
-			blokovi[i][j].unistiSe(blokovi);
+			blokovi[i][j].unistiSe(blokovi, false);
 	}
 
 }

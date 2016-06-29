@@ -11,14 +11,17 @@ public abstract class Blok
 	private static final int sirina = 50;
 	private static final int visina = 25;
 	private String pocetnaSlika;
+	private String slikaUnistenja;
 	private boolean unisten;
 	private Iznenadjenje iznenadjenje;
+	static int unistenoBlokova = 0;
 
 	public Blok(int i, int j, String pocetnaSlika)
 	{
 		this.i = i;
 		this.j = j;
 		this.pocetnaSlika = pocetnaSlika;
+		this.slikaUnistenja = null;
 		
 		x = 50 * j;
 		y = 25 * i;
@@ -71,6 +74,16 @@ public abstract class Blok
 		return unisten;
 	}
 
+	public String getSlikaUnistenja()
+	{
+		return slikaUnistenja;
+	}
+
+	public void setSlikaUnistenja(String slikaUnistenja)
+	{
+		this.slikaUnistenja = slikaUnistenja;
+	}
+
 	public void setUnisten(boolean unisten)
 	{
 		this.unisten = unisten;
@@ -85,7 +98,17 @@ public abstract class Blok
 	{
 		this.iznenadjenje = iznenadjenje;
 	}
+	
+	public static int getUnistenoBlokova()
+	{
+		return unistenoBlokova;
+	}
 
-	public abstract void unistiSe(Blok[][] blokovi);
+	public static void setUnistenoBlokova(int unistenoBlokova)
+	{
+		Blok.unistenoBlokova = unistenoBlokova;
+	}
+
+	public abstract void unistiSe(Blok[][] blokovi, boolean flag);
 
 }

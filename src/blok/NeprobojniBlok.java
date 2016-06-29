@@ -9,12 +9,14 @@ public class NeprobojniBlok extends Blok
 	}
 
 	
-	public void unistiSe(Blok[][] blokovi)
+	public void unistiSe(Blok[][] blokovi, boolean flag)
 	{
-		int i = getI();
-		int j = getJ();
+		setUnisten(true);
+		Blok.unistenoBlokova++;
+
+		if (flag)
+			setSlikaUnistenja("/SlikaUnistenja.gif");
 		
-		blokovi[i][j].setUnisten(true);
 		if (getIznenadjenje() != null)
 			getIznenadjenje().setVidljivo(true);
 	}

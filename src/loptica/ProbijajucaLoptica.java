@@ -12,7 +12,7 @@ public class ProbijajucaLoptica extends Loptica
 
 	public void unistiPolje(int i, int j, Blok[][] blokovi)
 	{
-		blokovi[i][j].unistiSe(blokovi);
+		blokovi[i][j].unistiSe(blokovi, false);
 	}
 
 }
