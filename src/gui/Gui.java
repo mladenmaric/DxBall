@@ -173,7 +173,7 @@ public class Gui extends JFrame
 		// TEKST SKOR
 		JPanel skor = new JPanel();
 		skor.setOpaque(false);
-		skor.setBounds((SIRINA - 1000) / 4 - 75, 10, 150, 50);
+		skor.setBounds(SIRINA / 4 - 335, 10, 150, 50);
 		panelLevo.add(skor);
 		
 		JLabel l3 = new JLabel(new ImageIcon(getClass().getResource("/Skor.png")));
@@ -184,7 +184,7 @@ public class Gui extends JFrame
 		// BROJ SKOR
 		skorBrojevi = new JLabel("0");
 		skorBrojevi.setOpaque(false);
-		skorBrojevi.setBounds((SIRINA - 1000) / 4 - 75, 80, 150, 50);
+		skorBrojevi.setBounds(20 + SIRINA / 4 - 335, 80, 150, 50);
 		skorBrojevi.setForeground(Color.WHITE);
 		skorBrojevi.setFont(new Font("Arial", Font.BOLD, 32));
 		panelLevo.add(skorBrojevi);
@@ -205,7 +205,7 @@ public class Gui extends JFrame
 		// TEKST ZIVOTI
 		JPanel zivoti = new JPanel();
 		zivoti.setOpaque(false);
-		zivoti.setBounds((SIRINA - 1000) / 4 - 75, 10, 150, 50);
+		zivoti.setBounds(20 + SIRINA / 4 - 335, 10, 150, 50);
 		panelDesno.add(zivoti);
 		
 		JLabel l4 = new JLabel(new ImageIcon(getClass().getResource("/Zivoti.png")));
@@ -216,7 +216,7 @@ public class Gui extends JFrame
 		// SLIKE ZIVOTI
 		slikeZivota = new JPanel(null);
 		slikeZivota.setOpaque(false);
-		slikeZivota.setBounds((SIRINA - 1000) / 4 - 75, 80, 60, 400);
+		slikeZivota.setBounds(20 + SIRINA / 4 - 335, 80, 60, 400);
 		panelDesno.add(slikeZivota);
 		
 		prikaziSlikeZivota();

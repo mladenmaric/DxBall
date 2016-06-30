@@ -15,7 +15,10 @@ public class OkovaniBlok extends Blok
 		Blok.unistenoBlokova++;
 		
 		if (flag)
+		{
 			setSlikaUnistenja("/SlikaUnistenja.gif");
+			setUnisten(true);
+		}
 		else
 			blokovi[i][j] = new NeprobojniBlok(super.getI(), super.getJ());
 	}
